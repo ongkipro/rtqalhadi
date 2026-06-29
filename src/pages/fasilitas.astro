@@ -63,7 +63,7 @@ const ctaText = `Assalamu’alaikum, saya ingin bertanya tentang fasilitas dan l
           FACILITIES.map((f) => {
             const Icon = ICONS[f.icon as keyof typeof ICONS];
             return (
-              <div class="bg-white p-6 md:p-8 rounded-[2rem] text-center border border-transparent hover:border-primary/20 hover:shadow-premium transition-all duration-300 group reveal">
+              <div class="bg-white p-6 md:p-8 rounded-2xl text-center border border-transparent hover:border-primary/20 hover:shadow-premium transition-all duration-300 group reveal">
                 <div class="w-14 h-14 md:w-16 md:h-16 mx-auto bg-primary/5 rounded-2xl flex items-center justify-center text-primary mb-5 md:mb-6 group-hover:scale-110 transition-transform">
                   <Icon class="w-7 h-7 md:w-8 md:h-8" stroke-width={1.5} />
                 </div>
@@ -90,7 +90,7 @@ const ctaText = `Assalamu’alaikum, saya ingin bertanya tentang fasilitas dan l
       <div class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-5">
         {
           ENVIRONMENT.map((img) => (
-            <div class="relative overflow-hidden rounded-2xl md:rounded-3xl shadow-premium group reveal">
+            <div class="relative overflow-hidden rounded-2xl shadow-premium group reveal">
               <img
                 src={img.src}
                 alt={img.alt}
@@ -110,7 +110,7 @@ const ctaText = `Assalamu’alaikum, saya ingin bertanya tentang fasilitas dan l
   <section class="py-16 md:py-24 bg-cream">
     <div class="container mx-auto px-6 max-w-7xl">
       <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-        <div class="relative overflow-hidden rounded-[2rem] shadow-premium reveal">
+        <div class="relative overflow-hidden rounded-2xl shadow-premium reveal">
           <img
             src="/images/gallery/halaman-apel-gunung.webp"
             alt="Halaman pondok dengan latar Gunung Banyak"

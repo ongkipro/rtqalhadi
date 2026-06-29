@@ -4,10 +4,10 @@
 // =============================================================
 
 export const STATS = [
-  { value: '2018', label: 'Tahun Berdiri' },
-  { value: '66', label: 'Cabang Nurul Haromain' },
-  { value: '4,7★', label: 'Rating Google (27 ulasan)' },
-  { value: '24 Jam', label: 'Asrama Penuh (Boarding)' },
+  { value: '2018', label: 'Tahun Berdiri', icon: 'CalendarDays' },
+  { value: '66', label: 'Cabang Nurul Haromain', icon: 'Network' },
+  { value: '4,7★', label: 'Rating Google (27 ulasan)', icon: 'Star' },
+  { value: '24 Jam', label: 'Asrama Penuh (Boarding)', icon: 'Clock' },
 ];
 
 // 3 Pilar Keunggulan (brosur resmi)

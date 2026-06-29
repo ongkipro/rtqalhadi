@@ -24,6 +24,13 @@
 
   --shadow-premium: 0 10px 40px -10px rgba(0, 0, 0, 0.08);
   --shadow-premium-hover: 0 20px 40px -10px rgba(6, 95, 70, 0.15);
+
+  /* ==========================================
+     RADIUS — skala tipis & konsisten (semua kartu = rounded-2xl)
+     ========================================== */
+  --radius-lg: 0.5rem; /* 8px  — elemen kecil (tombol ikon, input) */
+  --radius-xl: 0.625rem; /* 10px — tile ikon */
+  --radius-2xl: 0.875rem; /* 14px — radius kartu/panel utama seluruh situs */
 }
 
 /* ==========================================
@@ -89,10 +96,57 @@
   color: var(--color-secondary);
 }
 
-/* Drawer mobile — penanda link aktif */
+/* Drawer mobile — penanda link aktif (baris dengan ikon-tile) */
 .mobile-link[aria-current="page"] {
+  background-color: color-mix(in srgb, var(--color-primary) 8%, transparent);
+}
+.mobile-link[aria-current="page"] .nav-ico {
+  background-color: var(--color-primary);
+  color: #fff;
+}
+.mobile-link[aria-current="page"] .nav-label {
   color: var(--color-primary);
-  border-left-color: var(--color-secondary);
+}
+.mobile-link[aria-current="page"] .nav-chev {
+  color: var(--color-secondary);
+  opacity: 1;
+}
+
+/* Drawer mobile — animasi stagger item saat dibuka */
+#mobile-menu-drawer .stagger-item {
+  opacity: 0;
+  transform: translateY(-8px);
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease;
+}
+#mobile-menu-drawer.is-open .stagger-item {
+  opacity: 1;
+  transform: none;
+}
+#mobile-menu-drawer.is-open .stagger-item:nth-child(1) {
+  transition-delay: 0.05s;
+}
+#mobile-menu-drawer.is-open .stagger-item:nth-child(2) {
+  transition-delay: 0.09s;
+}
+#mobile-menu-drawer.is-open .stagger-item:nth-child(3) {
+  transition-delay: 0.13s;
+}
+#mobile-menu-drawer.is-open .stagger-item:nth-child(4) {
+  transition-delay: 0.17s;
+}
+#mobile-menu-drawer.is-open .stagger-item:nth-child(5) {
+  transition-delay: 0.21s;
+}
+#mobile-menu-drawer.is-open .stagger-item:nth-child(6) {
+  transition-delay: 0.25s;
+}
+#mobile-menu-drawer.is-open .stagger-item:nth-child(7) {
+  transition-delay: 0.29s;
+}
+#mobile-menu-drawer.is-open .stagger-item:nth-child(8) {
+  transition-delay: 0.33s;
 }
 
 /* ==========================================

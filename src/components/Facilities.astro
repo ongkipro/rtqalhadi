@@ -24,7 +24,7 @@ const facilities = FACILITIES.map((f, i) => ({ ...f, delay: delays[i % 3] }));
           return (
             <div
               class:list={[
-                'bg-cream p-6 md:p-8 rounded-[2rem] text-center border border-transparent hover:border-primary/20 hover:shadow-premium transition-all duration-300 group reveal',
+                'bg-cream p-6 md:p-8 rounded-2xl text-center border border-transparent hover:border-primary/20 hover:shadow-premium transition-all duration-300 group reveal',
                 facility.delay,
               ]}
             >

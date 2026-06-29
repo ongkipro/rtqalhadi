@@ -1,5 +1,6 @@
 ---
-import { ChevronRight } from '@lucide/astro';
+import { ChevronRight, House } from '@lucide/astro';
+import { SITE_URL } from '../data/site';
 
 interface Props {
   eyebrow?: string;
@@ -16,6 +17,20 @@ const {
   image = '/images/gallery/halaman-apel-gunung.webp',
   current,
 } = Astro.props;
+
+const breadcrumbLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Beranda', item: SITE_URL },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: current,
+      item: new URL(Astro.url.pathname, SITE_URL).href,
+    },
+  ],
+};
 ---
 
 <section class="relative pt-36 pb-16 md:pt-44 md:pb-24 overflow-hidden">
@@ -27,11 +42,35 @@ const {
 
   <div class="container mx-auto px-6 max-w-7xl relative z-10">
     <!-- Breadcrumb -->
-    <nav aria-label="Breadcrumb" class="flex items-center gap-1.5 text-sm text-white/70 mb-5">
-      <a href="/" title="Beranda Ribath Al-Hadi" class="hover:text-secondary transition-colors">Beranda</a>
-      <ChevronRight class="w-4 h-4" stroke-width={2} />
-      <span class="text-secondary font-medium">{current}</span>
+    <nav aria-label="Breadcrumb" class="mb-6">
+      <ol
+        class="inline-flex items-center gap-1.5 max-w-full rounded-full bg-white/10 ring-1 ring-white/20 backdrop-blur-md pl-3 pr-4 py-1.5 text-sm text-white/80 shadow-sm"
+      >
+        <li class="shrink-0">
+          <a
+            href="/"
+            title="Beranda Ribath Al-Hadi"
+            class="inline-flex items-center gap-1.5 hover:text-secondary transition-colors"
+          >
+            <House class="w-4 h-4" stroke-width={2} />
+            <span>Beranda</span>
+          </a>
+        </li>
+        <li class="shrink-0" aria-hidden="true">
+          <ChevronRight class="w-4 h-4 text-white/40" stroke-width={2} />
+        </li>
+        <li class="min-w-0">
+          <span
+            aria-current="page"
+            class="block max-w-[55vw] sm:max-w-xs truncate font-medium text-secondary"
+            title={current}
+          >
+            {current}
+          </span>
+        </li>
+      </ol>
     </nav>
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbLd)} is:inline />
 
     {eyebrow && <span class="text-secondary font-medium tracking-widest uppercase text-xs md:text-sm mb-3 block">{eyebrow}</span>}
     <h1 class="text-3xl md:text-5xl lg:text-6xl font-serif font-medium text-white leading-tight max-w-3xl">

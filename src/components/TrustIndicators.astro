@@ -1,6 +1,8 @@
 ---
 import { STATS } from '../data/content';
+import { CalendarDays, Network, Star, Clock } from '@lucide/astro';
 
+const ICONS: Record<string, any> = { CalendarDays, Network, Star, Clock };
 const delays = ['delay-100', 'delay-200', 'delay-300', 'delay-400'];
 ---
 
@@ -8,21 +10,27 @@ const delays = ['delay-100', 'delay-200', 'delay-300', 'delay-400'];
   <div class="container mx-auto max-w-7xl">
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
       {
-        STATS.map((stat, i) => (
-          <div
-            class:list={[
-              'bg-white/90 backdrop-blur-xl p-6 lg:p-8 rounded-3xl shadow-premium border border-white/40 flex flex-col items-center text-center group hover:-translate-y-2 transition-transform duration-500 reveal',
-              delays[i],
-            ]}
-          >
-            <span class="text-3xl md:text-4xl lg:text-5xl font-serif text-primary mb-2 group-hover:text-secondary transition-colors">
-              {stat.value}
-            </span>
-            <span class="text-xs md:text-sm font-medium text-accent uppercase tracking-wider">
-              {stat.label}
-            </span>
-          </div>
-        ))
+        STATS.map((stat, i) => {
+          const Icon = ICONS[stat.icon];
+          return (
+            <div
+              class:list={[
+                'bg-white/90 backdrop-blur-xl p-6 lg:p-8 rounded-2xl shadow-premium border border-white/40 flex flex-col items-center text-center group hover:-translate-y-2 transition-transform duration-500 reveal',
+                delays[i],
+              ]}
+            >
+              <span class="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-3 md:mb-4 group-hover:bg-secondary/15 group-hover:text-secondary transition-colors">
+                <Icon class="w-6 h-6 md:w-7 md:h-7" stroke-width={1.75} />
+              </span>
+              <span class="text-3xl md:text-4xl lg:text-5xl font-serif text-primary mb-2 group-hover:text-secondary transition-colors">
+                {stat.value}
+              </span>
+              <span class="text-xs md:text-sm font-medium text-accent uppercase tracking-wider">
+                {stat.label}
+              </span>
+            </div>
+          );
+        })
       }
     </div>
   </div>
