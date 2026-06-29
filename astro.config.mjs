@@ -7,6 +7,10 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://rtqalhadi.com',
   integrations: [sitemap()],
+  build: {
+    // Inline semua CSS ke <style> → hilangkan request CSS yang render-blocking.
+    inlineStylesheets: 'always',
+  },
   vite: {
     plugins: [tailwindcss()],
   },

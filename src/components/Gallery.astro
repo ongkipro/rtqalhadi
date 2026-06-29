@@ -33,6 +33,7 @@ const images = GALLERY.slice(0, 5).map((item, i) => ({
               loading="lazy"
               decoding="async"
               alt={image.alt}
+              title={image.alt}
               class="w-full h-full object-cover group-hover:scale-105 transition duration-700 cursor-pointer"
             />
             {image.overlay && (
@@ -46,6 +47,7 @@ const images = GALLERY.slice(0, 5).map((item, i) => ({
     <div class="text-center mt-12 md:mt-16 reveal delay-300">
       <a
         href="/galeri"
+        title="Galeri Kegiatan"
         class="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-medium text-white bg-primary rounded-full shadow-lg hover:bg-primary-dark transition-all duration-300 hover:-translate-y-1 group"
       >
         Lihat Galeri Lengkap

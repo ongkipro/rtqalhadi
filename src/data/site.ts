@@ -36,8 +36,34 @@ export const CONTACT = {
   waPIC: { number: '6285106043377', label: 'Ustadz Khoirul Huda', display: '0851-0604-3377' },
   instagram: 'https://instagram.com/ribathalhadi',
   threads: 'https://www.threads.net/@ribathalhadi',
-  facebook: 'https://facebook.com/nurulharomainpujon',
+  facebook: 'https://www.facebook.com/people/Ribath-Al-Hadi-Pujon/61583832654476/',
   websiteInduk: 'https://nurulharomain.org/ribath-alhadi/',
+} as const;
+
+// Author/publisher + kata kunci SEO (riset: pesantren tahfidz putri Malang/Pujon)
+export const SEO = {
+  author: "Ribath Tahfidh Al-Qur'an Al-Hadi",
+  publisher: "Ma'had Nurul Haromain Pujon",
+  keywords: [
+    'pesantren tahfidz putri',
+    'pondok pesantren putri Malang',
+    'pesantren tahfidz Pujon',
+    'tahfidz Al-Quran putri',
+    'pesantren khusus putri Malang',
+    'boarding school islam putri',
+    'menghafal Al-Quran',
+    'hafidzah',
+    'Ribath Al-Hadi',
+    'Ribath Tahfidh Al-Quran Al-Hadi',
+    'pesantren Nurul Haromain',
+    'Nurul Haromain Pujon',
+    'pondok tahfidz Qur’an Malang',
+    'pesantren tahfidz Jawa Timur',
+    'PPDB pesantren putri 2026',
+    'mahad tahfidzul quran putri',
+    'pesantren putri Pujon Malang',
+    'sekolah tahfidz putri',
+  ],
 } as const;
 
 export function waLink(number: string, text: string) {

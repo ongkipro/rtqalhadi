@@ -18,8 +18,8 @@
   --color-cream: #fdfbf7; /* Warm Cream */
   --color-dark: #0f172a; /* Slate 900 */
 
-  --font-sans: "Inter", sans-serif;
-  --font-serif: "Playfair Display", serif;
+  --font-sans: "Inter Variable", "Inter", system-ui, sans-serif;
+  --font-serif: "Playfair Display Variable", "Playfair Display", Georgia, serif;
 
   --shadow-premium: 0 10px 40px -10px rgba(0, 0, 0, 0.08);
   --shadow-premium-hover: 0 20px 40px -10px rgba(6, 95, 70, 0.15);

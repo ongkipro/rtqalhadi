@@ -13,7 +13,7 @@ const isActive = (href: string) => path === href.replace(/\/$/, '');
   <div class="container mx-auto px-6 max-w-7xl">
     <nav class="flex items-center justify-between" aria-label="Navigasi utama">
       <!-- Logo (teks saja) -->
-      <a href="/" aria-label={`${SITE.shortName} — Beranda`} class="flex flex-col leading-none z-50 relative">
+      <a href="/" aria-label={`${SITE.shortName} — Beranda`} title="Beranda Ribath Al-Hadi" class="flex flex-col leading-none z-50 relative">
         <span id="nav-logo-text" class="font-serif font-bold text-xl md:text-2xl text-white transition-colors duration-300">
           {SITE.shortName}
         </span>
@@ -28,6 +28,7 @@ const isActive = (href: string) => path === href.replace(/\/$/, '');
           NAV.map((item) => (
             <a
               href={item.href}
+              title={item.label}
               class="nav-link text-sm font-medium text-white/90 transition-colors duration-300"
               aria-current={isActive(item.href) ? 'page' : undefined}
             >
@@ -41,6 +42,7 @@ const isActive = (href: string) => path === href.replace(/\/$/, '');
       <div class="flex items-center gap-3 relative z-50">
         <a
           href="/ppdb"
+          title="Pendaftaran Santri Baru (PPDB)"
           class="hidden md:inline-flex items-center gap-1.5 pl-5 pr-4 py-2.5 text-sm font-medium text-white bg-primary rounded-full shadow-lg hover:bg-primary-dark transition-all duration-300 hover:-translate-y-0.5 group"
         >
           Daftar PPDB
@@ -96,6 +98,7 @@ const isActive = (href: string) => path === href.replace(/\/$/, '');
       NAV.map((item) => (
         <a
           href={item.href}
+          title={item.label}
           class="mobile-link text-lg font-serif text-dark hover:text-primary transition-colors py-3 pl-3 -ml-3 border-l-2 border-transparent rounded"
           aria-current={isActive(item.href) ? 'page' : undefined}
         >
@@ -105,6 +108,7 @@ const isActive = (href: string) => path === href.replace(/\/$/, '');
     }
     <a
       href="/ppdb"
+      title="Pendaftaran Santri Baru (PPDB)"
       class="mobile-link mt-4 px-6 py-4 inline-flex items-center justify-center gap-2 text-center text-base font-medium text-white bg-primary rounded-xl shadow-lg active:scale-[0.98] transition-transform"
     >
       Daftar PPDB

@@ -1,22 +1,29 @@
 ---
 import '../styles/global.css';
-import { SITE, ADDRESS, CONTACT, SITE_URL } from '../data/site';
+// Font self-host (variable) — hilangkan render-blocking Google Fonts.
+import '@fontsource-variable/inter';
+import '@fontsource-variable/playfair-display';
+import '@fontsource-variable/playfair-display/wght-italic.css';
+import { SITE, ADDRESS, CONTACT, SITE_URL, SEO } from '../data/site';
 
 interface Props {
   title?: string;
   description?: string;
   image?: string;
+  keywords?: string[];
 }
 
 const {
   title = "Ribath Tahfidh Al-Qur'an Al-Hadi - Pesantren Tahfidz Putri Pujon, Malang",
   description = "Ribath Tahfidh Al-Qur'an Al-Hadi (RTQ Al-Hadi) — pesantren tahfidz khusus putri di kaki Gunung Banyak, Pujon, Malang. Bagian dari Ma'had Nurul Haromain (cabang ke-66). Sistem asrama penuh & bimbingan tahfidz intensif.",
   image = '/images/gallery/papan-nama-alhadi.webp',
+  keywords = [],
 } = Astro.props;
 
 const base = Astro.site ?? new URL(SITE_URL);
 const canonical = new URL(Astro.url.pathname, base).href;
 const ogImage = new URL(image, base).href;
+const keywordsStr = [...keywords, ...SEO.keywords].join(', ');
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -40,7 +47,10 @@ const jsonLd = {
   geo: { '@type': 'GeoCoordinates', latitude: ADDRESS.coords.lat, longitude: ADDRESS.coords.lng },
   telephone: '+' + CONTACT.waPendaftaran.number,
   sameAs: [CONTACT.instagram, CONTACT.threads, CONTACT.facebook],
+  keywords: SEO.keywords.join(', '),
   parentOrganization: { '@type': 'EducationalOrganization', name: SITE.induk },
+  publisher: { '@type': 'Organization', name: SEO.publisher, url: 'https://nurulharomain.org' },
+  author: { '@type': 'Organization', name: SEO.author, url: SITE_URL },
   aggregateRating: {
     '@type': 'AggregateRating',
     ratingValue: '4.7',
@@ -56,7 +66,15 @@ const jsonLd = {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="description" content={description} />
+    <meta name="keywords" content={keywordsStr} />
+    <meta name="author" content={SEO.author} />
+    <meta name="publisher" content={SEO.publisher} />
+    <meta name="copyright" content={SITE.name} />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
     <meta name="theme-color" content="#065F46" />
+    <meta name="geo.region" content="ID-JI" />
+    <meta name="geo.placename" content="Pujon, Malang" />
+    <meta name="geo.position" content={`${ADDRESS.coords.lat};${ADDRESS.coords.lng}`} />
     <link rel="canonical" href={canonical} />
     <title>{title}</title>
 
@@ -68,6 +86,7 @@ const jsonLd = {
     <meta property="og:locale" content="id_ID" />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImage} />
+    <meta property="article:publisher" content={CONTACT.facebook} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
@@ -86,13 +105,8 @@ const jsonLd = {
       </style>
     </noscript>
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap"
-      rel="stylesheet"
-    />
+    <!-- Fonts di-self-host via @fontsource-variable (lihat frontmatter) -->
+
   </head>
   <body class="font-sans text-accent bg-white antialiased selection:bg-primary selection:text-white">
     <slot />
@@ -118,20 +132,25 @@ const jsonLd = {
         });
       });
 
-      // 4. Scroll Reveal Animation
-      function reveal() {
-        const reveals = document.querySelectorAll('.reveal');
-        const windowHeight = window.innerHeight;
-        const elementVisible = 100;
-        reveals.forEach((el) => {
-          const elementTop = el.getBoundingClientRect().top;
-          if (elementTop < windowHeight - elementVisible) {
-            el.classList.add('active');
-          }
-        });
+      // 4. Scroll Reveal — IntersectionObserver (tanpa layout-query di scroll,
+      //    menghindari forced reflow & long task pada main thread).
+      const revealEls = document.querySelectorAll('.reveal');
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver(
+          (entries, obs) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                obs.unobserve(entry.target);
+              }
+            });
+          },
+          { rootMargin: '0px 0px -100px 0px', threshold: 0 },
+        );
+        revealEls.forEach((el) => io.observe(el));
+      } else {
+        revealEls.forEach((el) => el.classList.add('active'));
       }
-      window.addEventListener('scroll', reveal);
-      reveal(); // Trigger on load
     </script>
   </body>
 </html>
