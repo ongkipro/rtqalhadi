@@ -1,0 +1,74 @@
+---
+const teachers = [
+  {
+    img: 'https://images.unsplash.com/photo-1531123414780-f74242c2b052?auto=format&fit=crop&q=80&w=600',
+    name: 'Ustazah Aisyah, Lc.',
+    role: 'Mudirah / Kepala Asrama',
+    desc: "Alumni Universitas Al-Azhar Kairo. Pemegang sanad Qira'at Asyrah.",
+    delay: 'delay-100',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1589156229687-496a31ad1d1f?auto=format&fit=crop&q=80&w=600',
+    name: 'Ustazah Fatimah, S.Pd.I',
+    role: 'Ketua Program Tahfidz',
+    desc: 'Hafizhah 30 Juz. Berpengalaman 10 tahun membimbing tahfidz mutqin.',
+    delay: 'delay-200',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=600',
+    name: 'Ustazah Khadijah, M.A.',
+    role: 'Pengampu Dirosah Islamiyah',
+    desc: "Pakar ilmu Fiqh Syafi'i dan Tafsir. Aktif menulis buku islami.",
+    delay: 'delay-300',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1509967419530-da38b4704bc6?auto=format&fit=crop&q=80&w=600',
+    name: 'Ustazah Maryam, S.Psi',
+    role: 'Konselor / Guru Karakter',
+    desc: 'Fokus pada kesehatan mental santri dan pengembangan kepemimpinan.',
+    delay: 'delay-400',
+  },
+];
+---
+
+<section id="teachers" class="py-24 bg-white">
+  <div class="container mx-auto px-6 max-w-7xl">
+    <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+      <span class="text-secondary font-medium tracking-widest uppercase text-sm mb-4 block"
+        >Asatidzah & Pembimbing</span
+      >
+      <h2 class="text-3xl md:text-4xl font-serif text-dark mb-4">Dibimbing oleh Ahlinya</h2>
+      <p class="text-accent">
+        Para pendidik kami adalah para Hafizhah bersanad dan sarjana Islam lulusan dalam dan luar negeri
+        yang berdedikasi penuh pada tarbiyah.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+      {
+        teachers.map((teacher) => (
+          <div
+            class:list={[
+              'bg-cream rounded-[2rem] overflow-hidden shadow-sm hover:shadow-premium transition-all duration-300 group reveal border border-gray-100',
+              teacher.delay,
+            ]}
+          >
+            <div class="aspect-[4/4] relative overflow-hidden bg-gray-200">
+              <img
+                src={teacher.img}
+                loading="lazy"
+                alt={teacher.name}
+                class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
+              />
+            </div>
+            <div class="p-6 text-center">
+              <h3 class="font-serif font-bold text-lg text-dark mb-1">{teacher.name}</h3>
+              <p class="text-sm text-primary font-medium mb-3">{teacher.role}</p>
+              <p class="text-xs text-accent">{teacher.desc}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

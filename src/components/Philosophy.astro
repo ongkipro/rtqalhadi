@@ -1,0 +1,72 @@
+---
+import { Star, ArrowRight } from '@lucide/astro';
+---
+
+<section id="philosophy" class="py-24 bg-white overflow-hidden">
+  <div class="container mx-auto px-6 max-w-7xl">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <!-- Left: Image -->
+      <div class="relative order-2 lg:order-1 reveal">
+        <div
+          class="absolute inset-0 bg-primary/5 rounded-3xl transform -rotate-3 scale-105 transition-transform duration-500 hover:rotate-0"
+        >
+        </div>
+        <img
+          src="https://images.unsplash.com/photo-1497604401993-f2e922e5cb0a?auto=format&fit=crop&q=80&w=1200"
+          loading="lazy"
+          alt="Library Study"
+          class="relative rounded-3xl shadow-xl w-full h-[350px] md:h-[450px] lg:h-[600px] object-cover object-center"
+        />
+        <!-- Floating badge -->
+        <div
+          class="absolute -bottom-6 -right-4 md:-bottom-8 md:-right-8 bg-white p-4 md:p-6 rounded-2xl shadow-premium hidden sm:block"
+        >
+          <div class="flex items-center gap-3 md:gap-4">
+            <div
+              class="w-10 h-10 md:w-12 md:h-12 bg-secondary/20 rounded-full flex items-center justify-center text-secondary"
+            >
+              <Star class="w-5 h-5 md:w-6 md:h-6 fill-current" stroke-width={0} />
+            </div>
+            <div>
+              <p class="text-dark font-serif font-bold text-lg md:text-xl">A+</p>
+              <p class="text-[10px] md:text-xs text-accent uppercase tracking-wider">Akreditasi Unggul</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Content -->
+      <div class="max-w-xl order-1 lg:order-2 reveal">
+        <span class="text-secondary font-medium tracking-widest uppercase text-sm mb-4 block"
+          >Filosofi Pendidikan</span
+        >
+        <h2 class="text-3xl md:text-5xl font-serif text-dark mb-6 md:mb-8 leading-tight">
+          Membentuk Ekosistem Pembelajaran Islami yang Beradab.
+        </h2>
+        <p class="text-base md:text-lg text-accent mb-8 leading-relaxed">
+          Kami percaya bahwa pendidikan tidak sekadar transfer ilmu, melainkan proses transformasi jiwa.
+          Di Ribath Al Hadi, setiap fasilitas, kurikulum, dan interaksi didesain untuk mendekatkan santri
+          kepada Allah Subhanahu Wa Ta'ala.
+        </p>
+
+        <blockquote class="pl-5 md:pl-6 border-l-4 border-secondary py-2 mb-8 md:mb-10">
+          <p class="text-lg md:text-xl font-serif text-primary italic">
+            "Pelajarilah adab sebelum engkau mempelajari suatu ilmu."
+          </p>
+          <footer class="text-xs md:text-sm text-accent mt-3">— Imam Malik rahimahullah</footer>
+        </blockquote>
+
+        <a
+          href="#programs"
+          class="inline-flex items-center gap-2 text-primary font-medium hover:text-secondary transition-colors group"
+        >
+          Jelajahi Kurikulum Kami
+          <ArrowRight
+            class="w-5 h-5 transform group-hover:translate-x-1 transition-transform"
+            stroke-width={2}
+          />
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

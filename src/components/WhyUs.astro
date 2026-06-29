@@ -1,0 +1,66 @@
+---
+import { BookOpen, Heart, Briefcase, GraduationCap } from '@lucide/astro';
+
+const features = [
+  {
+    icon: BookOpen,
+    title: 'Tahfidz Bersanad',
+    desc: 'Metodologi menghafal terstruktur dengan sanad muttasil hingga Rasulullah ﷺ, memastikan kualitas bacaan dan hafalan.',
+    delay: 'delay-100',
+  },
+  {
+    icon: Heart,
+    title: 'Tarbiyah Akhlak',
+    desc: 'Pendidikan adab sebelum ilmu. Membentuk karakter muslimah yang santun, tangguh, dan berbakti kepada orang tua.',
+    delay: 'delay-200',
+  },
+  {
+    icon: Briefcase,
+    title: 'Kepemimpinan',
+    desc: 'Melatih kemandirian, problem-solving, dan public speaking untuk menyiapkan pemimpin masa depan di ruang publik maupun domestik.',
+    delay: 'delay-300',
+  },
+  {
+    icon: GraduationCap,
+    title: 'Wawasan Global',
+    desc: 'Penguasaan Bahasa Arab & Inggris serta keterampilan digital sebagai bekal dakwah di era modern.',
+    delay: 'delay-400',
+  },
+];
+---
+
+<section id="why-us" class="py-24 bg-cream">
+  <div class="container mx-auto px-6 max-w-7xl">
+    <div class="text-center max-w-3xl mx-auto mb-16 md:mb-20 reveal">
+      <span class="text-secondary font-medium tracking-widest uppercase text-sm mb-4 block"
+        >Nilai Inti Kami</span
+      >
+      <h2 class="text-3xl md:text-5xl font-serif text-dark mb-6 leading-tight">
+        Mengapa Memilih Ribath Al Hadi?
+      </h2>
+      <p class="text-base md:text-lg text-accent">
+        Sistem pendidikan yang dirancang khusus untuk mencetak generasi muslimah yang kokoh akidahnya,
+        mulia akhlaknya, dan luas wawasannya.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+      {
+        features.map((feature) => (
+          <div
+            class:list={[
+              'group bg-white p-8 lg:p-10 rounded-3xl shadow-sm hover:shadow-premium-hover transition-all duration-300 border border-transparent hover:border-primary/10 reveal',
+              feature.delay,
+            ]}
+          >
+            <div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center text-primary mb-6 md:mb-8 group-hover:bg-primary group-hover:text-white transition-colors duration-300">
+              <feature.icon class="w-7 h-7" stroke-width={1.5} />
+            </div>
+            <h3 class="text-xl font-serif text-dark font-medium mb-3 md:mb-4">{feature.title}</h3>
+            <p class="text-accent text-sm leading-relaxed">{feature.desc}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

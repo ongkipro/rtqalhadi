@@ -1,0 +1,87 @@
+---
+const steps = [
+  {
+    num: '1',
+    title: 'Pendaftaran Online',
+    desc: 'Mengisi form di website dan melengkapi berkas administrasi digital.',
+    active: true,
+    delay: 'delay-100',
+  },
+  {
+    num: '2',
+    title: 'Tes Seleksi',
+    desc: "Tes baca Al-Qur'an, wawancara santri, dan wawancara orang tua secara offline.",
+    active: false,
+    delay: 'delay-200',
+  },
+  {
+    num: '3',
+    title: 'Pengumuman',
+    desc: 'Hasil kelulusan dikirimkan melalui WhatsApp dan Email resmi.',
+    active: false,
+    delay: 'delay-300',
+  },
+  {
+    num: '4',
+    title: 'Daftar Ulang',
+    desc: 'Penyelesaian administrasi keuangan dan pengambilan seragam.',
+    active: false,
+    delay: 'delay-400',
+  },
+];
+---
+
+<section id="admissions" class="py-24 bg-cream">
+  <div class="container mx-auto px-6 max-w-5xl">
+    <div class="text-center mb-16 reveal">
+      <span class="text-secondary font-medium tracking-widest uppercase text-sm mb-4 block"
+        >Alur Pendaftaran</span
+      >
+      <h2 class="text-3xl md:text-4xl font-serif text-dark mb-4">
+        Penerimaan Peserta Didik Baru (PPDB)
+      </h2>
+      <p class="text-accent max-w-2xl mx-auto">
+        Kuota terbatas. Proses seleksi dirancang untuk memastikan kesiapan calon santri dan keselarasan
+        visi dengan orang tua.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-4 gap-8 md:gap-4 relative z-0">
+      <!-- Connecting Line for Desktop -->
+      <div class="hidden md:block absolute top-10 left-16 right-16 h-0.5 bg-gray-200 z-[-1]"></div>
+      <!-- Connecting Line for Mobile -->
+      <div
+        class="md:hidden absolute top-10 bottom-10 left-1/2 transform -translate-x-1/2 w-0.5 bg-gray-200 z-[-1]"
+      >
+      </div>
+
+      {
+        steps.map((step) => (
+          <div class:list={['relative z-10 text-center reveal', step.delay]}>
+            <div
+              class:list={[
+                'w-16 h-16 md:w-20 md:h-20 mx-auto rounded-full flex items-center justify-center text-xl md:text-2xl font-serif font-bold mb-4 md:mb-6 ring-8 ring-cream',
+                step.active
+                  ? 'bg-primary text-white shadow-lg'
+                  : 'bg-white border-2 border-primary text-primary',
+              ]}
+            >
+              {step.num}
+            </div>
+            <h3 class="font-bold text-dark mb-2">{step.title}</h3>
+            <p class="text-sm text-accent max-w-[200px] mx-auto md:max-w-none">{step.desc}</p>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="text-center mt-12 md:mt-16 reveal delay-500">
+      <a
+        href="#cta"
+        class="inline-flex items-center justify-center px-8 py-4 text-base font-medium text-white bg-primary rounded-full shadow-lg hover:bg-primary-dark transition-all duration-300 hover:-translate-y-1"
+      >
+        Mulai Pendaftaran
+      </a>
+    </div>
+  </div>
+</section>

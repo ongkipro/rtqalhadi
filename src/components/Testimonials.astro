@@ -1,0 +1,56 @@
+---
+import { Star } from '@lucide/astro';
+
+const testimonials = [
+  {
+    quote:
+      '"Perubahan akhlak anak saya sangat terasa setelah mondok di sini. Hafalannya mutqin, dan adabnya kepada kami sebagai orang tua sangat luar biasa. Ini investasi dunia akhirat terbaik kami."',
+    initial: 'F',
+    name: 'Bunda Fatimah',
+    role: 'Wali Santri Kelas XI',
+  },
+  {
+    quote:
+      '"Fasilitasnya sangat bersih dan modern, tapi yang paling penting adalah bimbingan para ustazah yang sangat tulus. Anak saya sangat betah dan mandiri."',
+    initial: 'A',
+    name: 'Bapak Ahmad S.',
+    role: 'Wali Santri Alumni',
+  },
+];
+---
+
+<section class="py-24 bg-primary text-white overflow-hidden relative">
+  <!-- Abstract background pattern -->
+  <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-white/5 blur-3xl"></div>
+  <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-96 h-96 rounded-full bg-secondary/10 blur-3xl"></div>
+
+  <div class="container mx-auto px-6 max-w-7xl relative z-10">
+    <h2 class="text-3xl md:text-5xl font-serif text-center mb-12 md:mb-16 reveal">Apa Kata Wali Santri?</h2>
+
+    <div
+      class="flex overflow-x-auto pb-10 hide-scrollbar snap-x snap-mandatory gap-6 md:gap-8 -mx-6 px-6 md:mx-0 md:px-0 reveal delay-200"
+    >
+      {
+        testimonials.map((testimonial) => (
+          <div class="snap-center shrink-0 w-[85vw] md:w-[600px] bg-white/10 backdrop-blur-md rounded-[2rem] p-6 md:p-10 border border-white/20 hover:bg-white/15 transition-colors duration-300">
+            <div class="flex text-secondary mb-6 gap-1">
+              {Array.from({ length: 5 }).map(() => (
+                <Star class="w-5 h-5 fill-current" stroke-width={0} />
+              ))}
+            </div>
+            <p class="text-base md:text-xl leading-relaxed font-light mb-8 italic">{testimonial.quote}</p>
+            <div class="flex items-center gap-4">
+              <div class="w-10 h-10 md:w-12 md:h-12 bg-white/20 rounded-full flex items-center justify-center font-serif text-lg md:text-xl shrink-0">
+                {testimonial.initial}
+              </div>
+              <div>
+                <h4 class="font-bold text-sm md:text-base">{testimonial.name}</h4>
+                <p class="text-xs md:text-sm text-white/70">{testimonial.role}</p>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

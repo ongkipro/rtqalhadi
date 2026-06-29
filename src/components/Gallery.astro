@@ -1,0 +1,60 @@
+---
+const images = [
+  {
+    src: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&q=80&w=1200',
+    alt: 'Campus Life',
+    wrapper: 'col-span-2 row-span-2 rounded-[1.5rem] md:rounded-[2rem] overflow-hidden relative group bg-gray-200',
+    overlay: true,
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1590076215667-875d4cecebfc?auto=format&fit=crop&q=80&w=600',
+    alt: 'Study',
+    wrapper: 'rounded-[1.5rem] md:rounded-[2rem] overflow-hidden relative group bg-gray-200',
+    overlay: false,
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&q=80&w=600',
+    alt: 'Friends',
+    wrapper: 'rounded-[1.5rem] md:rounded-[2rem] overflow-hidden relative group bg-gray-200',
+    overlay: false,
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1606761568499-6d2451b23c66?auto=format&fit=crop&q=80&w=1200',
+    alt: 'Nature',
+    wrapper: 'col-span-2 rounded-[1.5rem] md:rounded-[2rem] overflow-hidden relative group bg-gray-200',
+    overlay: false,
+  },
+];
+---
+
+<section id="gallery" class="py-24 bg-cream">
+  <div class="container mx-auto px-6 max-w-7xl">
+    <div class="text-center max-w-3xl mx-auto mb-12 md:mb-16 reveal">
+      <h2 class="text-3xl md:text-4xl font-serif text-dark mb-4">Kehidupan di Ribath</h2>
+      <p class="text-accent">
+        Momen-momen berharga dalam perjalanan menuntut ilmu di lingkungan yang asri dan kondusif.
+      </p>
+    </div>
+
+    <!-- Modern Grid/Masonry layout -->
+    <div
+      class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 auto-rows-[150px] md:auto-rows-[200px] reveal delay-200"
+    >
+      {
+        images.map((image) => (
+          <div class={image.wrapper}>
+            <img
+              src={image.src}
+              loading="lazy"
+              alt={image.alt}
+              class="w-full h-full object-cover group-hover:scale-105 transition duration-700 cursor-pointer"
+            />
+            {image.overlay && (
+              <div class="absolute inset-0 bg-dark/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+            )}
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

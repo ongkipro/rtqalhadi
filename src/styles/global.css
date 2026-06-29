@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+/* ==========================================
+   DESIGN TOKENS (Tailwind v4 @theme)
+   Mirror of the original tailwind.config colors,
+   fonts and premium shadows.
+   ========================================== */
+@theme {
+  --color-primary: #065f46; /* Deep Emerald */
+  --color-primary-dark: #044331;
+  --color-primary-light: #059669;
+
+  --color-secondary: #d4af37; /* Gold */
+  --color-secondary-dark: #b5952f;
+  --color-secondary-light: #f3d568;
+
+  --color-accent: #64748b; /* Slate Gray */
+  --color-cream: #fdfbf7; /* Warm Cream */
+  --color-dark: #0f172a; /* Slate 900 */
+
+  --font-sans: "Inter", sans-serif;
+  --font-serif: "Playfair Display", serif;
+
+  --shadow-premium: 0 10px 40px -10px rgba(0, 0, 0, 0.08);
+  --shadow-premium-hover: 0 20px 40px -10px rgba(6, 95, 70, 0.15);
+}
+
+/* ==========================================
+   KEYFRAMES
+   ========================================== */
+@keyframes scroll-down {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(200%);
+  }
+}
+
+/* ==========================================
+   SCROLL REVEAL ANIMATION
+   ========================================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+}
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==========================================
+   HIDE SCROLLBAR (testimonial carousel)
+   ========================================== */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

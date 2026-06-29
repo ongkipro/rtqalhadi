@@ -1,0 +1,138 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Ribath Tahfidh Al-Qur'an Al Hadi | Premium Islamic Boarding School",
+  description = 'Lembaga pendidikan Islam premium yang memadukan kedalaman spiritual, tahfidz Al-Qur\'an mutqin, dan kepemimpinan modern.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="id" class="scroll-smooth scroll-pt-24 md:scroll-pt-28">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="font-sans text-accent bg-white antialiased selection:bg-primary selection:text-white">
+    <slot />
+
+    <script>
+      // 1. Navbar Scroll Effect
+      const navbar = document.getElementById('navbar');
+      const logoText = document.getElementById('nav-logo-text');
+      const navLinks = Array.from(
+        document.querySelectorAll<HTMLElement>('[data-nav-link]'),
+      );
+      const mobileBtn = document.getElementById('mobile-menu-btn');
+
+      window.addEventListener('scroll', () => {
+        if (!navbar || !logoText || !mobileBtn) return;
+        if (window.scrollY > 50) {
+          navbar.classList.add('bg-white/90', 'backdrop-blur-xl', 'shadow-sm', 'border-gray-200/50', 'py-3');
+          navbar.classList.remove('bg-transparent', 'py-4', 'border-transparent');
+          logoText.classList.remove('text-white');
+          logoText.classList.add('text-primary');
+          mobileBtn.classList.remove('text-white');
+          mobileBtn.classList.add('text-dark');
+          navLinks.forEach((link) => {
+            link.classList.remove('text-white/90');
+            link.classList.add('text-dark');
+          });
+        } else {
+          navbar.classList.remove('bg-white/90', 'backdrop-blur-xl', 'shadow-sm', 'border-gray-200/50', 'py-3');
+          navbar.classList.add('bg-transparent', 'py-4', 'border-transparent');
+          logoText.classList.add('text-white');
+          logoText.classList.remove('text-primary');
+          mobileBtn.classList.add('text-white');
+          mobileBtn.classList.remove('text-dark');
+          navLinks.forEach((link) => {
+            link.classList.add('text-white/90');
+            link.classList.remove('text-dark');
+          });
+        }
+      });
+
+      // 2. Mobile Menu Toggle
+      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+      const closeMenuBtn = document.getElementById('close-menu-btn');
+      const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+      const mobileMenuDrawer = document.getElementById('mobile-menu-drawer');
+      const mobileLinks = document.querySelectorAll('.mobile-link');
+
+      function openMenu() {
+        if (!mobileMenuOverlay || !mobileMenuDrawer) return;
+        mobileMenuOverlay.classList.remove('hidden');
+        void mobileMenuOverlay.offsetWidth; // trigger reflow for animation
+        mobileMenuOverlay.classList.remove('opacity-0');
+        mobileMenuDrawer.classList.remove('translate-x-full');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeMenu() {
+        if (!mobileMenuOverlay || !mobileMenuDrawer) return;
+        mobileMenuOverlay.classList.add('opacity-0');
+        mobileMenuDrawer.classList.add('translate-x-full');
+        document.body.style.overflow = '';
+        setTimeout(() => {
+          mobileMenuOverlay.classList.add('hidden');
+        }, 300);
+      }
+
+      mobileMenuBtn?.addEventListener('click', openMenu);
+      closeMenuBtn?.addEventListener('click', closeMenu);
+      mobileMenuOverlay?.addEventListener('click', closeMenu);
+      mobileLinks.forEach((link) => link.addEventListener('click', closeMenu));
+
+      // 3. FAQ Accordion Logic
+      const faqBtns = document.querySelectorAll<HTMLButtonElement>('.faq-btn');
+      faqBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const content = btn.nextElementSibling as HTMLElement | null;
+          const icon = btn.querySelector('svg');
+          if (!content) return;
+
+          document.querySelectorAll('.faq-content').forEach((otherContent) => {
+            if (otherContent !== content && !otherContent.classList.contains('hidden')) {
+              otherContent.classList.add('hidden');
+              otherContent.previousElementSibling?.querySelector('svg')?.classList.remove('rotate-180');
+            }
+          });
+
+          content.classList.toggle('hidden');
+          icon?.classList.toggle('rotate-180');
+        });
+      });
+
+      // 4. Scroll Reveal Animation
+      function reveal() {
+        const reveals = document.querySelectorAll('.reveal');
+        const windowHeight = window.innerHeight;
+        const elementVisible = 100;
+        reveals.forEach((el) => {
+          const elementTop = el.getBoundingClientRect().top;
+          if (elementTop < windowHeight - elementVisible) {
+            el.classList.add('active');
+          }
+        });
+      }
+      window.addEventListener('scroll', reveal);
+      reveal(); // Trigger on load
+    </script>
+  </body>
+</html>
