@@ -1,12 +1,11 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
-import sitemap from '@astrojs/sitemap';
 
 // https://astro.build
 export default defineConfig({
   site: 'https://rtqalhadi.com',
-  integrations: [sitemap()],
+  // Sitemap dibuat manual via src/pages/sitemap.xml.ts (satu file /sitemap.xml).
   build: {
     // Inline semua CSS ke <style> → hilangkan request CSS yang render-blocking.
     inlineStylesheets: 'always',
