@@ -1,6 +1,6 @@
 ---
 import { PPDB_STEPS } from '../data/content';
-import { CONTACT, waLink } from '../data/site';
+import { ArrowRight } from '@lucide/astro';
 
 const delays = ['delay-100', 'delay-200', 'delay-300', 'delay-400'];
 const steps = PPDB_STEPS.map((s, i) => ({
@@ -8,11 +8,6 @@ const steps = PPDB_STEPS.map((s, i) => ({
   active: i === 0,
   delay: delays[i] ?? '',
 }));
-
-const waDaftar = waLink(
-  CONTACT.waPendaftaran.number,
-  'Assalamualaikum, saya ingin mendaftar PPDB Ribath Al-Hadi.'
-);
 ---
 
 <section id="admissions" class="py-16 md:py-24 bg-cream">
@@ -31,13 +26,8 @@ const waDaftar = waLink(
     </div>
 
     <div class="grid md:grid-cols-4 gap-8 md:gap-4 relative z-0">
-      <!-- Connecting Line for Desktop -->
+      <!-- Connecting Line — desktop only (garis mobile dihilangkan agar tampilan lebih bersih) -->
       <div class="hidden md:block absolute top-10 left-16 right-16 h-0.5 bg-gray-200 z-[-1]"></div>
-      <!-- Connecting Line for Mobile -->
-      <div
-        class="md:hidden absolute top-10 bottom-10 left-1/2 transform -translate-x-1/2 w-0.5 bg-gray-200 z-[-1]"
-      >
-      </div>
 
       {
         steps.map((step) => (
@@ -59,32 +49,17 @@ const waDaftar = waLink(
       }
     </div>
 
-    <div
-      class="flex flex-col sm:flex-row items-center justify-center gap-4 mt-12 md:mt-16 reveal delay-500"
-    >
+    <div class="text-center mt-12 md:mt-16 reveal delay-500">
       <a
         href="/ppdb"
         title="Pendaftaran Santri Baru (PPDB)"
-        class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-base font-medium text-white bg-primary rounded-full shadow-lg hover:bg-primary-dark transition-all duration-300 hover:-translate-y-1"
+        class="inline-flex items-center gap-2 text-primary font-medium hover:text-secondary transition-colors group"
       >
-        Mulai Pendaftaran
-      </a>
-      <a
-        href={waDaftar}
-        target="_blank"
-        rel="noopener noreferrer"
-        title="Hubungi via WhatsApp"
-        class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-medium text-white bg-green-500 rounded-full shadow-lg hover:bg-green-400 transition-all duration-300 hover:-translate-y-1"
-      >
-        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-          <path
-            d="M12.01 2.013c-5.506 0-9.974 4.469-9.974 9.974 0 1.764.462 3.483 1.336 4.996L1.895 22.11l5.247-1.376a9.976 9.976 0 004.868 1.258h.004c5.505 0 9.973-4.468 9.973-9.973 0-5.505-4.468-9.974-9.973-9.974h-.004zm0 18.232h-.003a8.271 8.271 0 01-4.22-1.16l-.303-.18-3.136.822.836-3.056-.197-.314a8.271 8.271 0 01-1.265-4.387c0-4.57 3.718-8.288 8.288-8.288 4.57 0 8.288 3.718 8.288 8.288 0 4.57-3.718 8.288-8.288 8.288z"
-          ></path>
-          <path
-            d="M16.632 13.916c-.254-.127-1.498-.74-1.732-.824-.233-.085-.403-.127-.573.127-.17.254-.658.824-.807.994-.148.17-.297.191-.551.064-.254-.127-1.07-.395-2.039-1.258-.755-.672-1.265-1.503-1.413-1.757-.148-.254-.016-.391.111-.518.114-.114.254-.297.381-.445.127-.148.17-.254.254-.424.085-.17.042-.318-.021-.445-.064-.127-.573-1.382-.784-1.892-.206-.496-.414-.428-.573-.436-.148-.008-.318-.008-.488-.008-.17 0-.445.064-.679.318-.233.254-.89.87-.89 2.122 0 1.252.912 2.461 1.039 2.631.127.17 1.794 2.738 4.343 3.836.607.262 1.082.419 1.45.537.608.194 1.163.167 1.6.101.488-.073 1.498-.612 1.71-1.204.212-.592.212-1.098.148-1.204-.064-.106-.233-.17-.487-.297z"
-          ></path>
-        </svg>
-        Daftar via WhatsApp
+        Lihat alur &amp; syarat lengkap PPDB
+        <ArrowRight
+          class="w-5 h-5 transform group-hover:translate-x-1 transition-transform"
+          stroke-width={2}
+        />
       </a>
     </div>
   </div>
