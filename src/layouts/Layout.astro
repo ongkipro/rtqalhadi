@@ -10,6 +10,8 @@ const {
   title = "Ribath Tahfidh Al-Qur'an Al Hadi | Premium Islamic Boarding School",
   description = 'Lembaga pendidikan Islam premium yang memadukan kedalaman spiritual, tahfidz Al-Qur\'an mutqin, dan kepemimpinan modern.',
 } = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://ribathalhadi.sch.id').href;
 ---
 
 <!doctype html>
@@ -19,7 +21,30 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="description" content={description} />
+    <meta name="theme-color" content="#065F46" />
+    <link rel="canonical" href={canonical} />
     <title>{title}</title>
+
+    <!-- Open Graph / Social -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Ribath Tahfidh Al-Qur'an Al Hadi" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:locale" content="id_ID" />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <!-- Tampilkan konten penuh bila JavaScript dimatikan -->
+    <noscript>
+      <style>
+        .reveal {
+          opacity: 1 !important;
+          transform: none !important;
+        }
+      </style>
+    </noscript>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
