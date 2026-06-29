@@ -1,5 +1,13 @@
 <div align="center">
 
+### بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+
+**مَا شَاءَ اللَّهُ لَا قُوَّةَ إِلَّا بِاللَّهِ**
+
+_Semoga website ini menjadi wasilah kebaikan, ilmu yang bermanfaat, dan amal jariyah bagi semua yang terlibat. Aamiin._
+
+---
+
 # Ribath Tahfidh Al-Qur'an Al-Hadi
 
 **Website resmi** — Pesantren Tahfidz Khusus Putri di kaki Gunung Banyak, Pujon — Malang.
@@ -108,6 +116,8 @@ vercel --prod --yes   # deploy manual (opsional)
 ## 👤 Pengembang
 
 Dirancang & dikembangkan oleh **Ongki** — [![GitHub](https://img.shields.io/badge/GitHub-ongkipro-181717?logo=github)](https://github.com/ongkipro)
+
+> 🤲 **GRATIS untuk pondok pesantren, masjid, TPQ, madrasah & lembaga dakwah** — sebagai bentuk khidmah dan amal jariyah. _Lillāhi ta'ālā._
 
 > 💼 **Butuh website premium serupa** untuk pesantren, sekolah, bisnis, atau toko online?
 > Hubungi **[@ongkipro](https://github.com/ongkipro)** — desain modern, cepat, SEO-friendly, siap deploy.
