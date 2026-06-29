@@ -5,6 +5,8 @@ import WhatsAppFloat from '../components/WhatsAppFloat.astro';
 import Footer from '../components/Footer.astro';
 import PageHero from '../components/PageHero.astro';
 import SectionHeading from '../components/SectionHeading.astro';
+import QuranVerse from '../components/QuranVerse.astro';
+import { AYAT_HIFDH } from '../data/quotes';
 import { ArrowRight, CircleCheckBig, Quote } from '@lucide/astro';
 import { SITE, ADDRESS, CONTACT, waLink } from '../data/site';
 import { STATS } from '../data/content';
@@ -188,6 +190,9 @@ const waPesan = waLink(
     </div>
   </section>
 
+  <!-- Ayat: penjagaan Al-Qur'an -->
+  <QuranVerse verse={AYAT_HIFDH} />
+
   <!-- 5. Naungan & Sanad -->
   <section class="py-16 md:py-24 bg-cream overflow-hidden">
     <div class="container mx-auto px-6 max-w-7xl">
@@ -213,7 +218,13 @@ const waPesan = waLink(
 
           <blockquote class="mt-8 md:mt-10 pl-5 md:pl-6 border-l-4 border-secondary py-2">
             <Quote class="w-6 h-6 text-secondary mb-3" stroke-width={1.5} />
-            <p class="text-2xl font-serif text-primary mb-2" dir="rtl">مَا زِلْتَ طَالِبًا</p>
+            <p
+              dir="rtl"
+              lang="ar"
+              class="font-arabic text-3xl md:text-4xl text-primary leading-loose text-left mb-3"
+            >
+              مَا زِلْتَ طَالِبًا
+            </p>
             <p class="text-lg md:text-xl font-serif text-primary italic">
               “Selamanya Kamu Adalah Santri.”
             </p>

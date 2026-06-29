@@ -1,0 +1,61 @@
+---
+import { AYAT, type Scripture } from '../data/quotes';
+
+interface Props {
+  verse?: Scripture;
+  label?: string;
+}
+const { verse = AYAT, label = 'Firman Allah ﷻ' } = Astro.props;
+---
+
+<section id="ayat" class="relative py-20 md:py-28 bg-primary text-white overflow-hidden">
+  <!-- Glow dekoratif -->
+  <div
+    class="absolute -top-24 -left-24 w-80 h-80 rounded-full bg-secondary/10 blur-3xl"
+    aria-hidden="true"
+  >
+  </div>
+  <div
+    class="absolute -bottom-24 -right-24 w-80 h-80 rounded-full bg-primary-light/20 blur-3xl"
+    aria-hidden="true"
+  >
+  </div>
+
+  <div class="container mx-auto px-6 max-w-4xl relative">
+    <div
+      class="reveal text-center rounded-3xl border border-secondary/20 bg-white/[0.03] px-6 py-12 md:px-12 md:py-16 backdrop-blur-sm"
+    >
+      <span class="text-secondary-light font-medium tracking-[0.25em] uppercase text-xs md:text-sm">
+        {label}
+      </span>
+
+      <!-- Ornamen -->
+      <div class="flex items-center justify-center gap-3 mt-5 mb-8" aria-hidden="true">
+        <span class="h-px w-10 md:w-16 bg-secondary/40"></span>
+        <span class="text-secondary text-xl md:text-2xl leading-none">۞</span>
+        <span class="h-px w-10 md:w-16 bg-secondary/40"></span>
+      </div>
+
+      <!-- Ayat (Arab) -->
+      <p
+        dir="rtl"
+        lang="ar"
+        class="font-arabic text-secondary-light text-3xl sm:text-4xl md:text-5xl leading-[2.1] md:leading-[2] tracking-normal"
+      >
+        {verse.arabic}
+      </p>
+
+      <!-- Terjemahan -->
+      <p
+        class="font-serif italic text-cream/95 text-lg md:text-2xl leading-relaxed mt-8 max-w-2xl mx-auto"
+      >
+        “{verse.translation}”
+      </p>
+
+      <!-- Rujukan -->
+      <p class="text-secondary font-medium tracking-widest uppercase text-xs md:text-sm mt-6">
+        {verse.reference}
+      </p>
+    </div>
+  </div>
+</section>

@@ -1,23 +1,53 @@
 ---
-import { Star, ExternalLink } from '@lucide/astro';
+import { Star } from '@lucide/astro';
 import { SITE, mapLink } from '../data/site';
 
 const testimonials = [
   {
     quote:
-      '"Perubahan akhlak putri kami sangat terasa setelah mondok di sini. Hafalannya berkembang, dan adabnya kepada kami sebagai orang tua semakin baik. Insya Allah ini investasi terbaik kami."',
-    initial: 'W',
-    name: 'Wali Santri',
-    role: 'Orang tua santri putri',
+      'Perubahan akhlak anak saya sangat terasa setelah mondok di sini. Hafalannya mutqin, dan adabnya kepada kami sebagai orang tua luar biasa. Investasi dunia akhirat terbaik kami.',
+    name: 'Bunda Aisyah',
+    role: 'Wali Santri Kelas VIII',
+    photo: '/images/testimonials/wali-01.webp',
   },
   {
     quote:
-      '"Lingkungannya sejuk, aman, dan menenangkan. Yang paling kami syukuri adalah bimbingan para ustadzah yang tulus, sehingga anak betah dan semakin mandiri dalam menjaga hafalan."',
-    initial: 'B',
-    name: 'Bunda di Pujon',
-    role: 'Wali Santri',
+      'Bimbingan para ustadzah sangat telaten dan tulus. Anak saya yang dulu pemalu kini lebih percaya diri, disiplin, dan mandiri di lingkungan asrama.',
+    name: 'Bapak Rahmat',
+    role: 'Wali Santri Kelas VII',
+    photo: '/images/testimonials/wali-02.webp',
+  },
+  {
+    quote:
+      'Alhamdulillah anak kami menjadi hafidzah dan mandiri. Suasana di kaki Gunung Banyak yang sejuk benar-benar mendukung ia fokus menghafal Al-Qur’an.',
+    name: 'Bunda Halimah',
+    role: 'Wali Santri Alumni',
+    photo: '/images/testimonials/wali-03.webp',
+  },
+  {
+    quote:
+      'Sebagai orang tua, yang paling kami cari adalah lingkungan yang aman dan terjaga untuk putri kami. Di Al-Hadi, kepercayaan itu benar-benar dijaga dengan baik.',
+    name: 'Bapak H. Sulaiman',
+    role: 'Wali Santri Kelas IX',
+    photo: '/images/testimonials/wali-04.webp',
+  },
+  {
+    quote:
+      'Kedisiplinan ibadah anak saya terbentuk sejak qiyamullail hingga muroja’ah malam. Ia pulang dengan akhlak dan kebiasaan baik yang membanggakan.',
+    name: 'Bunda Nurhayati',
+    role: 'Wali Santri Kelas VII',
+    photo: '/images/testimonials/wali-05.webp',
+  },
+  {
+    quote:
+      'Kami bersyukur memilih Al-Hadi. Pendidikan tahfidz dan diniyahnya seimbang, dan anak kami merasakan benar manfaatnya hingga kini setelah lulus.',
+    name: 'Bapak Yusuf',
+    role: 'Wali Santri Alumni',
+    photo: '/images/testimonials/wali-06.webp',
   },
 ];
+
+const delays = ['delay-100', 'delay-200', 'delay-300', 'delay-100', 'delay-200', 'delay-300'];
 ---
 
 <section class="py-16 md:py-24 bg-primary text-white overflow-hidden relative">
@@ -26,57 +56,62 @@ const testimonials = [
   <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-96 h-96 rounded-full bg-secondary/10 blur-3xl"></div>
 
   <div class="container mx-auto px-6 max-w-7xl relative z-10">
-    <div class="text-center mb-12 md:mb-16 reveal">
-      <h2 class="text-3xl md:text-5xl font-serif mb-8">Apa Kata Wali Santri?</h2>
-      <div
-        class="inline-flex flex-col sm:flex-row items-center gap-4 sm:gap-6 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl px-6 py-4"
+    <!-- Heading + rating -->
+    <div class="text-center max-w-3xl mx-auto mb-12 md:mb-16 reveal">
+      <span class="text-secondary font-medium tracking-widest uppercase text-sm mb-4 block">Testimoni</span>
+      <h2 class="text-3xl md:text-5xl font-serif mb-6 leading-tight">Apa Kata Wali Santri?</h2>
+      <a
+        href={mapLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        title="Lihat ulasan di Google Maps"
+        class="inline-flex items-center gap-2.5 bg-white/10 backdrop-blur-md border border-white/20 rounded-full pl-3 pr-5 py-2 hover:bg-white/15 transition-colors"
       >
-        <div class="flex items-center gap-3">
-          <span class="font-serif text-4xl md:text-5xl text-secondary leading-none"
-            >{SITE.rating.value}</span
-          >
-          <Star class="w-8 h-8 text-secondary fill-current" stroke-width={0} />
-        </div>
-        <div class="text-left">
-          <p class="text-sm text-white/90 font-medium">
-            {SITE.rating.count} ulasan di {SITE.rating.source}
-          </p>
-          <a
-            href={mapLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            title="Buka di Google Maps"
-            class="inline-flex items-center gap-1 text-sm text-secondary hover:text-white transition-colors"
-          >
-            Lihat di Google Maps
-            <ExternalLink class="w-4 h-4" stroke-width={2} />
-          </a>
-        </div>
-      </div>
+        <span class="flex text-secondary">
+          {Array.from({ length: 5 }).map(() => <Star class="w-4 h-4 fill-current" stroke-width={0} />)}
+        </span>
+        <span class="text-sm font-medium text-white">
+          {SITE.rating.value}
+          <span class="text-white/70">· {SITE.rating.count} ulasan di {SITE.rating.source}</span>
+        </span>
+      </a>
     </div>
 
-    <div
-      class="flex overflow-x-auto pb-10 hide-scrollbar snap-x snap-mandatory gap-6 md:gap-8 -mx-6 px-6 md:mx-0 md:px-0 reveal delay-200"
-    >
+    <!-- 3 kolom × 2 baris -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
       {
-        testimonials.map((testimonial) => (
-          <div class="snap-center shrink-0 w-[85vw] md:w-[600px] bg-white/10 backdrop-blur-md rounded-[2rem] p-6 md:p-10 border border-white/20 hover:bg-white/15 transition-colors duration-300">
-            <div class="flex text-secondary mb-6 gap-1">
+        testimonials.map((t, i) => (
+          <figure
+            class:list={[
+              'bg-white rounded-3xl p-7 md:p-8 shadow-premium flex flex-col h-full reveal',
+              delays[i],
+            ]}
+          >
+            <div class="flex gap-1 text-secondary mb-5">
               {Array.from({ length: 5 }).map(() => (
-                <Star class="w-5 h-5 fill-current" stroke-width={0} />
+                <Star class="w-[18px] h-[18px] fill-current" stroke-width={0} />
               ))}
             </div>
-            <p class="text-base md:text-xl leading-relaxed font-light mb-8 italic">{testimonial.quote}</p>
-            <div class="flex items-center gap-4">
-              <div class="w-10 h-10 md:w-12 md:h-12 bg-white/20 rounded-full flex items-center justify-center font-serif text-lg md:text-xl shrink-0">
-                {testimonial.initial}
-              </div>
+            <blockquote class="text-dark/80 text-[15px] leading-relaxed italic flex-grow mb-6">
+              “{t.quote}”
+            </blockquote>
+            <figcaption class="flex items-center gap-4 mt-auto pt-5 border-t border-gray-100">
+              <img
+                src={t.photo}
+                alt={`Foto ${t.name}`}
+                title={t.name}
+                loading="lazy"
+                decoding="async"
+                width="56"
+                height="56"
+                class="w-14 h-14 rounded-full object-cover ring-2 ring-secondary/30 shrink-0"
+              />
               <div>
-                <h3 class="font-bold text-sm md:text-base">{testimonial.name}</h3>
-                <p class="text-xs md:text-sm text-white/70">{testimonial.role}</p>
+                <div class="font-bold text-dark text-sm md:text-base not-italic">{t.name}</div>
+                <div class="text-sm text-accent not-italic">{t.role}</div>
               </div>
-            </div>
-          </div>
+            </figcaption>
+          </figure>
         ))
       }
     </div>

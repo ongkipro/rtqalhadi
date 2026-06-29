@@ -20,6 +20,7 @@
 
   --font-sans: "Inter Variable", "Inter", system-ui, sans-serif;
   --font-serif: "Playfair Display Variable", "Playfair Display", Georgia, serif;
+  --font-arabic: "Amiri", "Scheherazade New", "Traditional Arabic", serif;
 
   --shadow-premium: 0 10px 40px -10px rgba(0, 0, 0, 0.08);
   --shadow-premium-hover: 0 20px 40px -10px rgba(6, 95, 70, 0.15);

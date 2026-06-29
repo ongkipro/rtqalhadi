@@ -1,0 +1,43 @@
+---
+import { Quote } from '@lucide/astro';
+import { HADITH } from '../data/quotes';
+---
+
+<section class="py-16 md:py-24 bg-cream">
+  <div class="container mx-auto px-6 max-w-3xl">
+    <div
+      class="reveal relative text-center bg-white rounded-3xl shadow-premium border border-gray-100 px-6 py-12 md:px-12 md:py-14"
+    >
+      <!-- Ikon kutipan -->
+      <div
+        class="absolute -top-6 left-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-primary text-secondary-light flex items-center justify-center shadow-premium"
+      >
+        <Quote class="w-6 h-6 fill-current" stroke-width={0} />
+      </div>
+
+      <span class="text-secondary font-medium tracking-[0.25em] uppercase text-xs md:text-sm">
+        Sabda Nabi ﷺ
+      </span>
+
+      <!-- Hadits (Arab) -->
+      <p
+        dir="rtl"
+        lang="ar"
+        class="font-arabic text-primary text-2xl sm:text-3xl md:text-4xl leading-[2] mt-6"
+      >
+        {HADITH.arabic}
+      </p>
+
+      <!-- Terjemahan -->
+      <p class="font-serif italic text-dark text-lg md:text-xl leading-relaxed mt-6">
+        “{HADITH.translation}”
+      </p>
+
+      <!-- Rujukan -->
+      <p class="text-accent text-xs md:text-sm mt-5">
+        <span class="text-primary font-semibold">{HADITH.reference}</span>
+        <span class="block mt-1">{HADITH.source}</span>
+      </p>
+    </div>
+  </div>
+</section>
