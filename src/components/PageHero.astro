@@ -1,0 +1,42 @@
+---
+import { ChevronRight } from '@lucide/astro';
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  subtitle?: string;
+  image?: string;
+  current: string;
+}
+
+const {
+  eyebrow,
+  title,
+  subtitle,
+  image = '/images/gallery/halaman-apel-gunung.webp',
+  current,
+} = Astro.props;
+---
+
+<section class="relative pt-36 pb-16 md:pt-44 md:pb-24 overflow-hidden">
+  <div class="absolute inset-0 z-0">
+    <img src={image} alt="" fetchpriority="high" decoding="async" class="w-full h-full object-cover object-center" />
+    <div class="absolute inset-0 bg-dark/70"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-dark/90 via-dark/50 to-dark/80"></div>
+  </div>
+
+  <div class="container mx-auto px-6 max-w-7xl relative z-10">
+    <!-- Breadcrumb -->
+    <nav aria-label="Breadcrumb" class="flex items-center gap-1.5 text-sm text-white/70 mb-5">
+      <a href="/" class="hover:text-secondary transition-colors">Beranda</a>
+      <ChevronRight class="w-4 h-4" stroke-width={2} />
+      <span class="text-secondary font-medium">{current}</span>
+    </nav>
+
+    {eyebrow && <span class="text-secondary font-medium tracking-widest uppercase text-xs md:text-sm mb-3 block">{eyebrow}</span>}
+    <h1 class="text-3xl md:text-5xl lg:text-6xl font-serif font-medium text-white leading-tight max-w-3xl">
+      {title}
+    </h1>
+    {subtitle && <p class="text-base md:text-lg text-white/80 mt-5 max-w-2xl font-light">{subtitle}</p>}
+  </div>
+</section>

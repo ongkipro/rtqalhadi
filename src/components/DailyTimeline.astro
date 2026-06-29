@@ -1,51 +1,24 @@
 ---
-import { Moon, BookOpen, Dumbbell } from '@lucide/astro';
+import { Moon, Clock, ArrowRight } from '@lucide/astro';
+import { SCHEDULE } from '../data/content';
 
-const items = [
-  {
-    icon: Moon,
-    iconBg: 'bg-secondary',
-    iconColor: 'text-dark',
-    time: '03.00 - 04.30',
-    title: 'Qiyamullail & Doa',
-    desc: 'Membangun kedekatan spiritual di sepertiga malam terakhir, dilanjutkan persiapan shalat Subuh.',
-    rowClass: 'flex-row-reverse md:flex-row',
-    align: '',
-  },
-  {
-    icon: BookOpen,
-    iconBg: 'bg-primary',
-    iconColor: 'text-white',
-    time: '04.30 - 06.30',
-    title: 'Halaqah Tahfidz Pagi',
-    desc: 'Ziyadah (menambah hafalan baru) dan murajaah hafalan bersama asatidzah.',
-    rowClass: 'flex-row-reverse',
-    align: 'md:text-right',
-  },
-  {
-    icon: BookOpen,
-    iconBg: 'bg-primary',
-    iconColor: 'text-white',
-    time: '07.30 - 12.00',
-    title: 'Pendidikan Diniyah & Umum',
-    desc: "Pembelajaran Ilmu Syar'i (Aqidah, Fiqh, Bahasa Arab) terintegrasi kurikulum nasional.",
-    rowClass: 'flex-row-reverse md:flex-row',
-    align: '',
-  },
-  {
-    icon: Dumbbell,
-    iconBg: 'bg-primary',
-    iconColor: 'text-white',
-    time: '16.00 - 17.30',
-    title: 'Ekstrakurikuler & Olahraga',
-    desc: 'Panahan, berenang, desain grafis, atau public speaking sesuai minat bakat santri.',
-    rowClass: 'flex-row-reverse',
-    align: 'md:text-right',
-  },
-];
+const items = SCHEDULE.map((s, i) => {
+  const isFirst = i === 0;
+  const isRight = i % 2 === 1;
+  return {
+    icon: isFirst ? Moon : Clock,
+    iconBg: isFirst ? 'bg-secondary' : 'bg-primary',
+    iconColor: isFirst ? 'text-dark' : 'text-white',
+    time: s.time,
+    title: s.title,
+    desc: s.desc,
+    rowClass: isRight ? 'flex-row-reverse' : 'flex-row-reverse md:flex-row',
+    align: isRight ? 'md:text-right' : '',
+  };
+});
 ---
 
-<section class="py-24 bg-dark text-white">
+<section class="py-16 md:py-24 bg-dark text-white">
   <div class="container mx-auto px-6 max-w-5xl">
     <div class="text-center mb-16 md:mb-20 reveal">
       <h2 class="text-3xl md:text-5xl font-serif text-white mb-6">Satu Hari di Ribath</h2>
@@ -89,6 +62,19 @@ const items = [
           </div>
         ))
       }
+    </div>
+
+    <div class="text-center mt-12 md:mt-16 reveal">
+      <a
+        href="/program"
+        class="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-medium text-dark bg-secondary rounded-full shadow-lg hover:bg-secondary-light transition-all duration-300 hover:-translate-y-1 group"
+      >
+        Lihat Jadwal Lengkap
+        <ArrowRight
+          class="w-5 h-5 transform group-hover:translate-x-1 transition-transform"
+          stroke-width={2}
+        />
+      </a>
     </div>
   </div>
 </section>

@@ -1,9 +1,14 @@
 ---
-const phone = '6281234567890';
+import { CONTACT, waLink } from '../data/site';
+
+const href = waLink(
+  CONTACT.waPendaftaran.number,
+  'Assalamualaikum, saya ingin bertanya tentang pendaftaran Ribath Al-Hadi.'
+);
 ---
 
 <a
-  href={`https://wa.me/${phone}`}
+  href={href}
   target="_blank"
   rel="noopener noreferrer"
   aria-label="Hubungi via WhatsApp"

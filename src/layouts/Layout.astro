@@ -1,17 +1,52 @@
 ---
 import '../styles/global.css';
+import { SITE, ADDRESS, CONTACT, SITE_URL } from '../data/site';
 
 interface Props {
   title?: string;
   description?: string;
+  image?: string;
 }
 
 const {
-  title = "Ribath Tahfidh Al-Qur'an Al Hadi | Premium Islamic Boarding School",
-  description = 'Lembaga pendidikan Islam premium yang memadukan kedalaman spiritual, tahfidz Al-Qur\'an mutqin, dan kepemimpinan modern.',
+  title = "Ribath Tahfidh Al-Qur'an Al-Hadi - Pesantren Tahfidz Putri Pujon, Malang",
+  description = "Ribath Tahfidh Al-Qur'an Al-Hadi (RTQ Al-Hadi) — pesantren tahfidz khusus putri di kaki Gunung Banyak, Pujon, Malang. Bagian dari Ma'had Nurul Haromain (cabang ke-66). Sistem asrama penuh & bimbingan tahfidz intensif.",
+  image = '/images/gallery/papan-nama-alhadi.webp',
 } = Astro.props;
 
-const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://ribathalhadi.sch.id').href;
+const base = Astro.site ?? new URL(SITE_URL);
+const canonical = new URL(Astro.url.pathname, base).href;
+const ogImage = new URL(image, base).href;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'EducationalOrganization',
+  name: SITE.name,
+  alternateName: 'RTQ Al-Hadi',
+  url: SITE_URL,
+  logo: new URL('/images/gallery/papan-nama-alhadi.webp', base).href,
+  image: ogImage,
+  description,
+  foundingDate: String(SITE.est),
+  slogan: SITE.motto.join(', '),
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Jurangrejo, Pandesari',
+    addressLocality: 'Pujon',
+    addressRegion: 'Jawa Timur',
+    postalCode: '65391',
+    addressCountry: 'ID',
+  },
+  geo: { '@type': 'GeoCoordinates', latitude: ADDRESS.coords.lat, longitude: ADDRESS.coords.lng },
+  telephone: '+' + CONTACT.waPendaftaran.number,
+  sameAs: [CONTACT.instagram, CONTACT.threads, CONTACT.facebook],
+  parentOrganization: { '@type': 'EducationalOrganization', name: SITE.induk },
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '4.7',
+    reviewCount: SITE.rating.count,
+  },
+};
 ---
 
 <!doctype html>
@@ -27,14 +62,19 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://ribathalhad
 
     <!-- Open Graph / Social -->
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Ribath Tahfidh Al-Qur'an Al Hadi" />
+    <meta property="og:site_name" content="Ribath Tahfidh Al-Qur'an Al-Hadi" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:locale" content="id_ID" />
     <meta property="og:url" content={canonical} />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Structured data (JSON-LD) -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
     <!-- Tampilkan konten penuh bila JavaScript dimatikan -->
     <noscript>
@@ -58,72 +98,6 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://ribathalhad
     <slot />
 
     <script>
-      // 1. Navbar Scroll Effect
-      const navbar = document.getElementById('navbar');
-      const logoText = document.getElementById('nav-logo-text');
-      const navLinks = Array.from(
-        document.querySelectorAll<HTMLElement>('[data-nav-link]'),
-      );
-      const mobileBtn = document.getElementById('mobile-menu-btn');
-
-      window.addEventListener('scroll', () => {
-        if (!navbar || !logoText || !mobileBtn) return;
-        if (window.scrollY > 50) {
-          navbar.classList.add('bg-white/90', 'backdrop-blur-xl', 'shadow-sm', 'border-gray-200/50', 'py-3');
-          navbar.classList.remove('bg-transparent', 'py-4', 'border-transparent');
-          logoText.classList.remove('text-white');
-          logoText.classList.add('text-primary');
-          mobileBtn.classList.remove('text-white');
-          mobileBtn.classList.add('text-dark');
-          navLinks.forEach((link) => {
-            link.classList.remove('text-white/90');
-            link.classList.add('text-dark');
-          });
-        } else {
-          navbar.classList.remove('bg-white/90', 'backdrop-blur-xl', 'shadow-sm', 'border-gray-200/50', 'py-3');
-          navbar.classList.add('bg-transparent', 'py-4', 'border-transparent');
-          logoText.classList.add('text-white');
-          logoText.classList.remove('text-primary');
-          mobileBtn.classList.add('text-white');
-          mobileBtn.classList.remove('text-dark');
-          navLinks.forEach((link) => {
-            link.classList.add('text-white/90');
-            link.classList.remove('text-dark');
-          });
-        }
-      });
-
-      // 2. Mobile Menu Toggle
-      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-      const closeMenuBtn = document.getElementById('close-menu-btn');
-      const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
-      const mobileMenuDrawer = document.getElementById('mobile-menu-drawer');
-      const mobileLinks = document.querySelectorAll('.mobile-link');
-
-      function openMenu() {
-        if (!mobileMenuOverlay || !mobileMenuDrawer) return;
-        mobileMenuOverlay.classList.remove('hidden');
-        void mobileMenuOverlay.offsetWidth; // trigger reflow for animation
-        mobileMenuOverlay.classList.remove('opacity-0');
-        mobileMenuDrawer.classList.remove('translate-x-full');
-        document.body.style.overflow = 'hidden';
-      }
-
-      function closeMenu() {
-        if (!mobileMenuOverlay || !mobileMenuDrawer) return;
-        mobileMenuOverlay.classList.add('opacity-0');
-        mobileMenuDrawer.classList.add('translate-x-full');
-        document.body.style.overflow = '';
-        setTimeout(() => {
-          mobileMenuOverlay.classList.add('hidden');
-        }, 300);
-      }
-
-      mobileMenuBtn?.addEventListener('click', openMenu);
-      closeMenuBtn?.addEventListener('click', closeMenu);
-      mobileMenuOverlay?.addEventListener('click', closeMenu);
-      mobileLinks.forEach((link) => link.addEventListener('click', closeMenu));
-
       // 3. FAQ Accordion Logic
       const faqBtns = document.querySelectorAll<HTMLButtonElement>('.faq-btn');
       faqBtns.forEach((btn) => {

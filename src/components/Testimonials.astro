@@ -1,31 +1,58 @@
 ---
-import { Star } from '@lucide/astro';
+import { Star, ExternalLink } from '@lucide/astro';
+import { SITE, mapLink } from '../data/site';
 
 const testimonials = [
   {
     quote:
-      '"Perubahan akhlak anak saya sangat terasa setelah mondok di sini. Hafalannya mutqin, dan adabnya kepada kami sebagai orang tua sangat luar biasa. Ini investasi dunia akhirat terbaik kami."',
-    initial: 'F',
-    name: 'Bunda Fatimah',
-    role: 'Wali Santri Kelas XI',
+      '"Perubahan akhlak putri kami sangat terasa setelah mondok di sini. Hafalannya berkembang, dan adabnya kepada kami sebagai orang tua semakin baik. Insya Allah ini investasi terbaik kami."',
+    initial: 'W',
+    name: 'Wali Santri',
+    role: 'Orang tua santri putri',
   },
   {
     quote:
-      '"Fasilitasnya sangat bersih dan modern, tapi yang paling penting adalah bimbingan para ustazah yang sangat tulus. Anak saya sangat betah dan mandiri."',
-    initial: 'A',
-    name: 'Bapak Ahmad S.',
-    role: 'Wali Santri Alumni',
+      '"Lingkungannya sejuk, aman, dan menenangkan. Yang paling kami syukuri adalah bimbingan para ustadzah yang tulus, sehingga anak betah dan semakin mandiri dalam menjaga hafalan."',
+    initial: 'B',
+    name: 'Bunda di Pujon',
+    role: 'Wali Santri',
   },
 ];
 ---
 
-<section class="py-24 bg-primary text-white overflow-hidden relative">
+<section class="py-16 md:py-24 bg-primary text-white overflow-hidden relative">
   <!-- Abstract background pattern -->
   <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-white/5 blur-3xl"></div>
   <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-96 h-96 rounded-full bg-secondary/10 blur-3xl"></div>
 
   <div class="container mx-auto px-6 max-w-7xl relative z-10">
-    <h2 class="text-3xl md:text-5xl font-serif text-center mb-12 md:mb-16 reveal">Apa Kata Wali Santri?</h2>
+    <div class="text-center mb-12 md:mb-16 reveal">
+      <h2 class="text-3xl md:text-5xl font-serif mb-8">Apa Kata Wali Santri?</h2>
+      <div
+        class="inline-flex flex-col sm:flex-row items-center gap-4 sm:gap-6 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl px-6 py-4"
+      >
+        <div class="flex items-center gap-3">
+          <span class="font-serif text-4xl md:text-5xl text-secondary leading-none"
+            >{SITE.rating.value}</span
+          >
+          <Star class="w-8 h-8 text-secondary fill-current" stroke-width={0} />
+        </div>
+        <div class="text-left">
+          <p class="text-sm text-white/90 font-medium">
+            {SITE.rating.count} ulasan di {SITE.rating.source}
+          </p>
+          <a
+            href={mapLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-1 text-sm text-secondary hover:text-white transition-colors"
+          >
+            Lihat di Google Maps
+            <ExternalLink class="w-4 h-4" stroke-width={2} />
+          </a>
+        </div>
+      </div>
+    </div>
 
     <div
       class="flex overflow-x-auto pb-10 hide-scrollbar snap-x snap-mandatory gap-6 md:gap-8 -mx-6 px-6 md:mx-0 md:px-0 reveal delay-200"

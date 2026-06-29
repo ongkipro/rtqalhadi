@@ -1,74 +1,69 @@
 ---
-const teachers = [
-  {
-    img: 'https://images.unsplash.com/photo-1531123414780-f74242c2b052?auto=format&fit=crop&q=80&w=600',
-    name: 'Ustazah Aisyah, Lc.',
-    role: 'Mudirah / Kepala Asrama',
-    desc: "Alumni Universitas Al-Azhar Kairo. Pemegang sanad Qira'at Asyrah.",
-    delay: 'delay-100',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1589156229687-496a31ad1d1f?auto=format&fit=crop&q=80&w=600',
-    name: 'Ustazah Fatimah, S.Pd.I',
-    role: 'Ketua Program Tahfidz',
-    desc: 'Hafizhah 30 Juz. Berpengalaman 10 tahun membimbing tahfidz mutqin.',
-    delay: 'delay-200',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=600',
-    name: 'Ustazah Khadijah, M.A.',
-    role: 'Pengampu Dirosah Islamiyah',
-    desc: "Pakar ilmu Fiqh Syafi'i dan Tafsir. Aktif menulis buku islami.",
-    delay: 'delay-300',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1509967419530-da38b4704bc6?auto=format&fit=crop&q=80&w=600',
-    name: 'Ustazah Maryam, S.Psi',
-    role: 'Konselor / Guru Karakter',
-    desc: 'Fokus pada kesehatan mental santri dan pengembangan kepemimpinan.',
-    delay: 'delay-400',
-  },
-];
+import { BookOpenCheck, GraduationCap } from '@lucide/astro';
 ---
 
-<section id="teachers" class="py-24 bg-white">
+<section id="teachers" class="py-16 md:py-24 bg-white">
   <div class="container mx-auto px-6 max-w-7xl">
-    <div class="text-center max-w-3xl mx-auto mb-16 reveal">
-      <span class="text-secondary font-medium tracking-widest uppercase text-sm mb-4 block"
-        >Asatidzah & Pembimbing</span
-      >
-      <h2 class="text-3xl md:text-4xl font-serif text-dark mb-4">Dibimbing oleh Ahlinya</h2>
-      <p class="text-accent">
-        Para pendidik kami adalah para Hafizhah bersanad dan sarjana Islam lulusan dalam dan luar negeri
-        yang berdedikasi penuh pada tarbiyah.
-      </p>
-    </div>
-
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-      {
-        teachers.map((teacher) => (
-          <div
-            class:list={[
-              'bg-cream rounded-[2rem] overflow-hidden shadow-sm hover:shadow-premium transition-all duration-300 group reveal border border-gray-100',
-              teacher.delay,
-            ]}
-          >
-            <div class="aspect-[4/4] relative overflow-hidden bg-gray-200">
-              <img
-                src={teacher.img}
-                loading="lazy"
-                alt={teacher.name}
-                class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
-              />
-            </div>
-            <div class="p-6 text-center">
-              <h3 class="font-serif font-bold text-lg text-dark mb-1">{teacher.name}</h3>
-              <p class="text-sm text-primary font-medium mb-3">{teacher.role}</p>
-              <p class="text-xs text-accent">{teacher.desc}</p>
-            </div>
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <!-- Image -->
+      <div class="relative reveal">
+        <div class="rounded-[2rem] overflow-hidden shadow-premium bg-gray-200 aspect-[4/3]">
+          <img
+            src="/images/gallery/pengasuh-bersama-santri.webp"
+            loading="lazy"
+            decoding="async"
+            alt="Pengasuh bersama santri Ribath Al-Hadi"
+            class="w-full h-full object-cover"
+          />
+        </div>
+        <!-- Floating sanad badge -->
+        <div
+          class="absolute -bottom-6 left-6 right-6 md:left-auto md:right-8 md:max-w-xs bg-primary text-white rounded-2xl p-5 md:p-6 shadow-premium-hover"
+        >
+          <div class="flex items-center gap-3 mb-1">
+            <GraduationCap class="w-6 h-6 text-secondary shrink-0" stroke-width={1.5} />
+            <span class="font-serif text-lg">Sanad Keilmuan</span>
           </div>
-        ))
-      }
+          <p class="text-sm text-white/80 leading-relaxed">
+            Tersambung melalui Ma'had Nurul Haromain — KH Ihya' Ulumiddin, murid Abuya Sayyid
+            Muhammad Al-Maliki Al-Hasani, Makkah.
+          </p>
+        </div>
+      </div>
+
+      <!-- Text -->
+      <div class="reveal delay-200 lg:pl-4 pt-8 lg:pt-0">
+        <span class="text-secondary font-medium tracking-widest uppercase text-sm mb-4 block"
+          >Pengasuh & Bimbingan</span
+        >
+        <h2 class="text-3xl md:text-4xl font-serif text-dark mb-6 leading-tight">
+          Dibimbing dalam Sanad Keilmuan Nurul Haromain
+        </h2>
+        <div class="space-y-4 text-accent leading-relaxed">
+          <p>
+            Setiap santri putri didampingi langsung oleh para ustadzah dan musyrifah yang
+            berdedikasi penuh — membimbing setoran hafalan, muroja'ah harian, serta pembinaan adab
+            dan akhlak sepanjang hari dalam lingkungan asrama.
+          </p>
+          <p>
+            Ribath Al-Hadi berada di bawah naungan Ma'had Nurul Haromain Pujon yang diasuh oleh
+            <strong class="text-dark font-semibold">KH Ihya' Ulumiddin</strong> — murid dari
+            <strong class="text-dark font-semibold"
+              >Abuya Dr. Sayyid Muhammad bin Alawi Al-Maliki Al-Hasani</strong
+            >
+            (Makkah). Dari mata rantai keilmuan inilah bimbingan dan keberkahan ilmu disalurkan
+            kepada para santri.
+          </p>
+        </div>
+        <div class="mt-8 flex items-start gap-3 bg-cream rounded-2xl p-5 border border-gray-100">
+          <BookOpenCheck class="w-6 h-6 text-primary shrink-0 mt-0.5" stroke-width={1.5} />
+          <p class="text-sm text-accent">
+            Pendekatan tarbiyah yang mengutamakan <span class="text-dark font-medium"
+              >adab sebelum ilmu</span
+            >, sejalan dengan motto pesantren: Jujur, Ikhlas, dan Semangat.
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </section>

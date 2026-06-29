@@ -1,13 +1,9 @@
 ---
-import { BookOpen, Menu, X } from '@lucide/astro';
+import { Menu, X, ArrowRight } from '@lucide/astro';
+import { SITE, NAV } from '../data/site';
 
-const navItems = [
-  { href: '#why-us', label: 'Tentang Kami' },
-  { href: '#philosophy', label: 'Kurikulum' },
-  { href: '#programs', label: 'Program' },
-  { href: '#teachers', label: 'Asatidzah' },
-  { href: '#facilities', label: 'Fasilitas' },
-];
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isActive = (href: string) => path === href.replace(/\/$/, '');
 ---
 
 <header
@@ -15,30 +11,25 @@ const navItems = [
   class="fixed w-full top-0 z-[60] transition-all duration-500 bg-transparent py-4 border-b border-transparent"
 >
   <div class="container mx-auto px-6 max-w-7xl">
-    <nav class="flex items-center justify-between">
-      <!-- Logo -->
-      <a href="#" class="flex items-center gap-2 group z-50 relative">
-        <div
-          class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white transition duration-300 group-hover:bg-secondary shadow-lg"
-        >
-          <BookOpen class="w-6 h-6" stroke-width={1.5} />
-        </div>
-        <span
-          id="nav-logo-text"
-          class="font-serif font-bold text-xl text-white transition-colors duration-300"
-        >
-          Al Hadi
+    <nav class="flex items-center justify-between" aria-label="Navigasi utama">
+      <!-- Logo (teks saja) -->
+      <a href="/" aria-label={`${SITE.shortName} — Beranda`} class="flex flex-col leading-none z-50 relative">
+        <span id="nav-logo-text" class="font-serif font-bold text-xl md:text-2xl text-white transition-colors duration-300">
+          {SITE.shortName}
+        </span>
+        <span id="nav-logo-sub" class="text-[10px] tracking-[0.2em] uppercase text-white/60 transition-colors duration-300 mt-0.5">
+          {SITE.brandLine}
         </span>
       </a>
 
       <!-- Desktop Menu -->
-      <div class="hidden lg:flex items-center gap-8">
+      <div class="hidden lg:flex items-center gap-7">
         {
-          navItems.map((item) => (
+          NAV.map((item) => (
             <a
               href={item.href}
-              data-nav-link
-              class="text-sm font-medium text-white/90 hover:text-secondary transition duration-300"
+              class="nav-link text-sm font-medium text-white/90 transition-colors duration-300"
+              aria-current={isActive(item.href) ? 'page' : undefined}
             >
               {item.label}
             </a>
@@ -47,61 +38,171 @@ const navItems = [
       </div>
 
       <!-- CTA & Mobile Toggle -->
-      <div class="flex items-center gap-4 relative z-50">
+      <div class="flex items-center gap-3 relative z-50">
         <a
-          href="#admissions"
-          class="hidden md:inline-flex items-center justify-center px-6 py-2.5 text-sm font-medium text-white bg-primary rounded-full shadow-lg hover:bg-primary-dark transition-all duration-300 hover:-translate-y-0.5"
+          href="/ppdb"
+          class="hidden md:inline-flex items-center gap-1.5 pl-5 pr-4 py-2.5 text-sm font-medium text-white bg-primary rounded-full shadow-lg hover:bg-primary-dark transition-all duration-300 hover:-translate-y-0.5 group"
         >
           Daftar PPDB
+          <ArrowRight class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" stroke-width={2} />
         </a>
         <button
           id="mobile-menu-btn"
-          aria-label="Toggle Menu"
-          class="lg:hidden text-white hover:text-secondary p-2 -mr-2 transition-colors focus:outline-none focus:ring-2 focus:ring-white/50 rounded-lg"
+          type="button"
+          aria-label="Buka menu"
+          aria-expanded="false"
+          aria-controls="mobile-menu-drawer"
+          aria-haspopup="dialog"
+          class="lg:hidden text-white p-2 -mr-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 rounded-lg"
         >
           <Menu class="w-7 h-7" stroke-width={2} />
         </button>
       </div>
     </nav>
   </div>
-
-  <!-- Mobile Menu Overlay & Drawer -->
-  <div
-    id="mobile-menu-overlay"
-    class="fixed inset-0 bg-dark/60 backdrop-blur-sm z-[100] hidden opacity-0 transition-opacity duration-300"
-  >
-  </div>
-  <div
-    id="mobile-menu-drawer"
-    class="fixed top-0 right-0 bottom-0 w-[80vw] max-w-sm bg-white z-[101] transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col shadow-2xl"
-  >
-    <div class="flex items-center justify-between p-6 border-b border-gray-100">
-      <span class="font-serif font-bold text-xl text-primary">Menu</span>
-      <button
-        id="close-menu-btn"
-        aria-label="Close Menu"
-        class="text-dark p-2 bg-gray-100 rounded-full hover:bg-gray-200 transition-colors focus:outline-none"
-      >
-        <X class="w-6 h-6" stroke-width={2} />
-      </button>
-    </div>
-    <div class="flex flex-col px-6 py-8 gap-6 overflow-y-auto">
-      {
-        navItems.map((item) => (
-          <a
-            href={item.href}
-            class="mobile-link text-xl font-serif text-dark hover:text-primary transition-colors"
-          >
-            {item.label}
-          </a>
-        ))
-      }
-      <a
-        href="#admissions"
-        class="mobile-link mt-4 px-6 py-4 text-center text-lg font-medium text-white bg-primary rounded-xl shadow-lg"
-      >
-        Daftar PPDB
-      </a>
-    </div>
-  </div>
 </header>
+
+<!-- Mobile Menu — overlay + top sheet (turun dari atas).
+     Di luar <header> agar tidak terjebak stacking context-nya. -->
+<div
+  id="mobile-menu-overlay"
+  class="fixed inset-0 bg-dark/60 backdrop-blur-sm z-[200] hidden opacity-0 transition-opacity duration-300"
+>
+</div>
+<div
+  id="mobile-menu-drawer"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Menu navigasi"
+  inert
+  class="fixed top-0 left-0 right-0 z-[210] bg-white shadow-2xl rounded-b-3xl transform -translate-y-full transition-transform duration-300 ease-in-out flex flex-col max-h-[90vh] overflow-y-auto"
+>
+  <div class="flex items-center justify-between px-6 py-5 border-b border-gray-100">
+    <span class="flex flex-col leading-none">
+      <span class="font-serif font-bold text-xl text-primary">{SITE.shortName}</span>
+      <span class="text-[10px] tracking-[0.2em] uppercase text-accent mt-0.5">{SITE.brandLine}</span>
+    </span>
+    <button
+      id="close-menu-btn"
+      type="button"
+      aria-label="Tutup menu"
+      class="text-dark p-2 bg-gray-100 rounded-full hover:bg-gray-200 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+    >
+      <X class="w-6 h-6" stroke-width={2} />
+    </button>
+  </div>
+  <div class="flex flex-col px-6 py-6 gap-1">
+    {
+      NAV.map((item) => (
+        <a
+          href={item.href}
+          class="mobile-link text-lg font-serif text-dark hover:text-primary transition-colors py-3 pl-3 -ml-3 border-l-2 border-transparent rounded"
+          aria-current={isActive(item.href) ? 'page' : undefined}
+        >
+          {item.label}
+        </a>
+      ))
+    }
+    <a
+      href="/ppdb"
+      class="mobile-link mt-4 px-6 py-4 inline-flex items-center justify-center gap-2 text-center text-base font-medium text-white bg-primary rounded-xl shadow-lg active:scale-[0.98] transition-transform"
+    >
+      Daftar PPDB
+      <ArrowRight class="w-5 h-5" stroke-width={2} />
+    </a>
+  </div>
+</div>
+
+<script>
+  // 1. Efek scroll navbar (warna teks hanya untuk link desktop)
+  const navbar = document.getElementById('navbar');
+  const logoText = document.getElementById('nav-logo-text');
+  const logoSub = document.getElementById('nav-logo-sub');
+  const mobileBtn = document.getElementById('mobile-menu-btn');
+  const desktopLinks = Array.from(document.querySelectorAll<HTMLElement>('.nav-link'));
+
+  function onScroll() {
+    if (!navbar) return;
+    const solid = window.scrollY > 50;
+    navbar.classList.toggle('bg-white/90', solid);
+    navbar.classList.toggle('backdrop-blur-xl', solid);
+    navbar.classList.toggle('shadow-sm', solid);
+    navbar.classList.toggle('border-gray-200/50', solid);
+    navbar.classList.toggle('py-3', solid);
+    navbar.classList.toggle('bg-transparent', !solid);
+    navbar.classList.toggle('py-4', !solid);
+    navbar.classList.toggle('border-transparent', !solid);
+    logoText?.classList.toggle('text-primary', solid);
+    logoText?.classList.toggle('text-white', !solid);
+    logoSub?.classList.toggle('text-accent', solid);
+    logoSub?.classList.toggle('text-white/60', !solid);
+    mobileBtn?.classList.toggle('text-dark', solid);
+    mobileBtn?.classList.toggle('text-white', !solid);
+    desktopLinks.forEach((link) => {
+      // jangan timpa warna link yang sedang aktif (punya aria-current)
+      if (link.hasAttribute('aria-current')) return;
+      link.classList.toggle('text-dark', solid);
+      link.classList.toggle('text-white/90', !solid);
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // 2. Mobile menu (a11y: aria, inert, Escape, focus trap)
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const closeMenuBtn = document.getElementById('close-menu-btn');
+  const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+  const mobileMenuDrawer = document.getElementById('mobile-menu-drawer');
+  const mobileLinks = document.querySelectorAll('.mobile-link');
+
+  function openMenu() {
+    if (!mobileMenuOverlay || !mobileMenuDrawer) return;
+    mobileMenuOverlay.classList.remove('hidden');
+    void mobileMenuOverlay.offsetWidth;
+    mobileMenuOverlay.classList.remove('opacity-0');
+    mobileMenuDrawer.classList.remove('-translate-y-full');
+    mobileMenuDrawer.removeAttribute('inert');
+    document.body.style.overflow = 'hidden';
+    mobileMenuBtn?.setAttribute('aria-expanded', 'true');
+    mobileMenuBtn?.setAttribute('aria-label', 'Tutup menu');
+    closeMenuBtn?.focus();
+  }
+
+  function closeMenu() {
+    if (!mobileMenuOverlay || !mobileMenuDrawer) return;
+    mobileMenuOverlay.classList.add('opacity-0');
+    mobileMenuDrawer.classList.add('-translate-y-full');
+    mobileMenuDrawer.setAttribute('inert', '');
+    document.body.style.overflow = '';
+    mobileMenuBtn?.setAttribute('aria-expanded', 'false');
+    mobileMenuBtn?.setAttribute('aria-label', 'Buka menu');
+    setTimeout(() => mobileMenuOverlay.classList.add('hidden'), 300);
+    mobileMenuBtn?.focus();
+  }
+
+  mobileMenuBtn?.addEventListener('click', openMenu);
+  closeMenuBtn?.addEventListener('click', closeMenu);
+  mobileMenuOverlay?.addEventListener('click', closeMenu);
+  mobileLinks.forEach((link) => link.addEventListener('click', closeMenu));
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileMenuDrawer && !mobileMenuDrawer.hasAttribute('inert')) {
+      closeMenu();
+    }
+  });
+
+  mobileMenuDrawer?.addEventListener('keydown', (e) => {
+    if (e.key !== 'Tab') return;
+    const focusables = mobileMenuDrawer.querySelectorAll<HTMLElement>('a[href], button');
+    if (!focusables.length) return;
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  });
+</script>

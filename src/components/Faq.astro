@@ -1,23 +1,11 @@
 ---
 import { ChevronDown } from '@lucide/astro';
+import { FAQS } from '../data/content';
 
-const faqs = [
-  {
-    q: 'Berapa target hafalan selama 3 tahun?',
-    a: 'Target lulusan tingkat Tsanawiyah (SMP) adalah 15 Juz, sedangkan untuk tingkat Aliyah (SMA) targetnya adalah 30 Juz Mutqin bersanad.',
-  },
-  {
-    q: 'Apakah santri diperbolehkan membawa HP?',
-    a: 'Untuk menjaga fokus hafalan dan adab, santri tidak diperkenankan membawa alat komunikasi elektronik. Komunikasi dengan orang tua difasilitasi melalui layanan telepon asrama setiap akhir pekan.',
-  },
-  {
-    q: 'Bagaimana sistem keamanan di asrama?',
-    a: 'Keamanan dikelola 24 jam dengan sistem One Gate, CCTV di area publik (non-privat), dan pengawasan langsung oleh Musyrifah di setiap lorong kamar.',
-  },
-];
+const faqs = FAQS;
 ---
 
-<section class="py-24 bg-white">
+<section class="py-16 md:py-24 bg-white">
   <div class="container mx-auto px-6 max-w-3xl">
     <h2 class="text-3xl md:text-4xl font-serif text-center text-dark mb-12 reveal">
       Pertanyaan yang Sering Diajukan

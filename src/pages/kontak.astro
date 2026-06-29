@@ -1,0 +1,181 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import WhatsAppFloat from '../components/WhatsAppFloat.astro';
+import Footer from '../components/Footer.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import { SITE, ADDRESS, CONTACT, waLink, mapEmbedSrc, mapLink } from '../data/site';
+import { MessageCircle, Phone, AtSign, MapPin, ExternalLink } from '@lucide/astro';
+
+const waPendaftaranUrl = waLink(
+  CONTACT.waPendaftaran.number,
+  'Assalamualaikum, saya ingin mendaftar PPDB Ribath Al-Hadi. Mohon informasinya.'
+);
+const waInformasiUrl = waLink(
+  CONTACT.waPIC.number,
+  'Assalamualaikum, saya ingin bertanya seputar Ribath Al-Hadi.'
+);
+---
+
+<Layout
+  title="Kontak - Ribath Al-Hadi"
+  description="Hubungi Ribath Tahfidh Al-Qur'an Al-Hadi untuk pertanyaan, kunjungan, dan pendaftaran. WhatsApp, Instagram, alamat, dan lokasi di Pujon, Malang."
+>
+  <Navbar />
+  <WhatsAppFloat />
+  <PageHero
+    current="Kontak"
+    eyebrow="Hubungi Kami"
+    title="Hubungi Ribath Al-Hadi"
+    subtitle="Untuk pertanyaan, jadwal kunjungan, maupun pendaftaran santri baru — tim kami siap membantu Anda."
+    image="/images/gallery/jalan-masuk-gerbang.webp"
+  />
+
+  <!-- 1) Contact grid -->
+  <section class="py-16 md:py-24 bg-white">
+    <div class="container mx-auto px-6 max-w-7xl">
+      <SectionHeading
+        eyebrow="Kanal Resmi"
+        title="Cara Menghubungi Kami"
+        subtitle="Pilih kanal yang paling nyaman untuk Anda."
+        class="mb-12 md:mb-16"
+      />
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
+        <!-- WhatsApp Pendaftaran -->
+        <div class="bg-cream p-8 rounded-[2rem] shadow-premium reveal delay-100 flex flex-col">
+          <div
+            class="w-14 h-14 bg-primary/5 rounded-2xl flex items-center justify-center text-primary mb-5"
+          >
+            <MessageCircle class="w-7 h-7" stroke-width={1.5} />
+          </div>
+          <h3 class="font-serif text-xl text-dark mb-1">WhatsApp Pendaftaran</h3>
+          <p class="text-accent text-sm mb-1">{CONTACT.waPendaftaran.label}</p>
+          <p class="text-dark font-medium mb-6">{CONTACT.waPendaftaran.display}</p>
+          <a
+            href={waPendaftaranUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mt-auto inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-medium text-white bg-primary rounded-full shadow-lg hover:bg-primary-dark transition-all duration-300 hover:-translate-y-0.5"
+          >
+            <MessageCircle class="w-5 h-5" stroke-width={1.5} />
+            Chat Pendaftaran
+          </a>
+        </div>
+
+        <!-- WhatsApp Informasi -->
+        <div class="bg-cream p-8 rounded-[2rem] shadow-premium reveal delay-200 flex flex-col">
+          <div
+            class="w-14 h-14 bg-primary/5 rounded-2xl flex items-center justify-center text-primary mb-5"
+          >
+            <Phone class="w-7 h-7" stroke-width={1.5} />
+          </div>
+          <h3 class="font-serif text-xl text-dark mb-1">WhatsApp Informasi</h3>
+          <p class="text-accent text-sm mb-1">{CONTACT.waPIC.label}</p>
+          <p class="text-dark font-medium mb-6">{CONTACT.waPIC.display}</p>
+          <a
+            href={waInformasiUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mt-auto inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-medium text-white bg-primary rounded-full shadow-lg hover:bg-primary-dark transition-all duration-300 hover:-translate-y-0.5"
+          >
+            <Phone class="w-5 h-5" stroke-width={1.5} />
+            Chat Informasi
+          </a>
+        </div>
+
+        <!-- Instagram -->
+        <div class="bg-cream p-8 rounded-[2rem] shadow-premium reveal delay-100 flex flex-col">
+          <div
+            class="w-14 h-14 bg-primary/5 rounded-2xl flex items-center justify-center text-primary mb-5"
+          >
+            <AtSign class="w-7 h-7" stroke-width={1.5} />
+          </div>
+          <h3 class="font-serif text-xl text-dark mb-1">Instagram</h3>
+          <p class="text-accent text-sm mb-1">Ikuti keseharian santri</p>
+          <p class="text-dark font-medium mb-6">@ribathalhadi</p>
+          <a
+            href={CONTACT.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mt-auto inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-medium text-primary bg-primary/5 rounded-full hover:bg-primary/10 transition-all duration-300 hover:-translate-y-0.5"
+          >
+            <AtSign class="w-5 h-5" stroke-width={1.5} />
+            Kunjungi Instagram
+          </a>
+        </div>
+
+        <!-- Alamat -->
+        <div class="bg-cream p-8 rounded-[2rem] shadow-premium reveal delay-200 flex flex-col">
+          <div
+            class="w-14 h-14 bg-primary/5 rounded-2xl flex items-center justify-center text-primary mb-5"
+          >
+            <MapPin class="w-7 h-7" stroke-width={1.5} />
+          </div>
+          <h3 class="font-serif text-xl text-dark mb-1">Alamat</h3>
+          <p class="text-dark text-sm leading-relaxed mb-4">{ADDRESS.building}</p>
+          <p class="text-accent text-xs leading-relaxed mt-auto">
+            Surat-menyurat / pendaftaran via: <span class="text-dark">{ADDRESS.mailing}</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2) Map -->
+  <section class="py-16 md:py-24 bg-cream">
+    <div class="container mx-auto px-6 max-w-7xl">
+      <SectionHeading
+        eyebrow="Lokasi"
+        title="Temukan Kami di Peta"
+        subtitle="Berada di kaki Gunung Banyak, Pujon — Kabupaten Malang, Jawa Timur."
+        class="mb-10 md:mb-12"
+      />
+
+      <div class="reveal rounded-3xl overflow-hidden border border-primary/10 shadow-premium">
+        <iframe
+          src={mapEmbedSrc}
+          title="Lokasi Ribath Tahfidh Al-Qur'an Al-Hadi"
+          class="w-full h-[400px]"
+          style="border:0;"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen></iframe>
+      </div>
+
+      <div class="text-center mt-8 reveal">
+        <a
+          href={mapLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-medium text-white bg-primary rounded-full shadow-lg hover:bg-primary-dark transition-all duration-300 hover:-translate-y-1"
+        >
+          <ExternalLink class="w-5 h-5" stroke-width={1.5} />
+          Buka di Google Maps
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3) Note band -->
+  <section class="py-12 md:py-16 bg-primary">
+    <div class="container mx-auto px-6 max-w-4xl text-center reveal">
+      <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 mb-4">
+        {
+          SITE.motto.map((m, i) => (
+            <>
+              {i > 0 && <span class="text-secondary">·</span>}
+              <span class="text-xl md:text-2xl font-serif text-white">{m}</span>
+            </>
+          ))
+        }
+      </div>
+      <p class="text-white/70 text-sm md:text-base">
+        {SITE.type} — Cabang {SITE.cabang}
+      </p>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>

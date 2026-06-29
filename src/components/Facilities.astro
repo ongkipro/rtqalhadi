@@ -1,72 +1,41 @@
 ---
-import { Building2, House, BookOpen, UtensilsCrossed, MonitorPlay, HeartPulse } from '@lucide/astro';
+import { BedDouble, Building2, BookOpen, Mountain, UtensilsCrossed, ShieldCheck } from '@lucide/astro';
+import { FACILITIES } from '../data/content';
 
-const facilities = [
-  {
-    icon: Building2,
-    title: "Masjid Jami'",
-    desc: 'Pusat kegiatan spiritual yang luas dan nyaman (Full AC).',
-    delay: 'delay-100',
-  },
-  {
-    icon: House,
-    title: 'Asrama Eksklusif',
-    desc: 'Kamar ber-AC dengan dipan terpisah, rasio 1 kamar 6 santri.',
-    delay: 'delay-200',
-  },
-  {
-    icon: BookOpen,
-    title: 'Perpustakaan',
-    desc: 'Koleksi kitab turats lengkap dan literatur ilmu pengetahuan modern.',
-    delay: 'delay-300',
-  },
-  {
-    icon: UtensilsCrossed,
-    title: 'Ruang Makan',
-    desc: 'Sistem katering ahli gizi, ruang makan higienis setara hotel.',
-    delay: 'delay-100',
-  },
-  {
-    icon: MonitorPlay,
-    title: 'Kelas Multimedia',
-    desc: 'Smart TV interaktif dan koneksi internet khusus area belajar.',
-    delay: 'delay-200',
-  },
-  {
-    icon: HeartPulse,
-    title: 'Klinik Kesehatan',
-    desc: 'Dokter jaga dan perawat standby 24 jam untuk santri.',
-    delay: 'delay-300',
-  },
-];
+const ICONS = { BedDouble, Building2, BookOpen, Mountain, UtensilsCrossed, ShieldCheck };
+const delays = ['delay-100', 'delay-200', 'delay-300'];
+const facilities = FACILITIES.map((f, i) => ({ ...f, delay: delays[i % 3] }));
 ---
 
-<section id="facilities" class="py-24 bg-white">
+<section id="facilities" class="py-16 md:py-24 bg-white">
   <div class="container mx-auto px-6 max-w-7xl">
     <div class="text-center max-w-3xl mx-auto mb-12 md:mb-16 reveal">
       <span class="text-secondary font-medium tracking-widest uppercase text-sm mb-4 block"
         >Fasilitas Premium</span
       >
-      <h2 class="text-3xl md:text-4xl font-serif text-dark mb-4">Lingkungan Tumbuh yang Optimal</h2>
+      <h2 class="text-3xl md:text-4xl font-serif text-dark mb-4">Fasilitas & Lingkungan</h2>
       <p class="text-accent">Mendukung kenyamanan belajar dan beribadah santri dengan standar tinggi.</p>
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
       {
-        facilities.map((facility) => (
-          <div
-            class:list={[
-              'bg-cream p-6 md:p-8 rounded-[2rem] text-center border border-transparent hover:border-primary/20 hover:shadow-premium transition-all duration-300 group reveal',
-              facility.delay,
-            ]}
-          >
-            <div class="w-14 h-14 md:w-16 md:h-16 mx-auto bg-primary/5 rounded-2xl flex items-center justify-center text-primary mb-5 md:mb-6 group-hover:scale-110 transition-transform">
-              <facility.icon class="w-7 h-7 md:w-8 md:h-8" stroke-width={1.5} />
+        facilities.map((facility) => {
+          const Icon = ICONS[facility.icon as keyof typeof ICONS];
+          return (
+            <div
+              class:list={[
+                'bg-cream p-6 md:p-8 rounded-[2rem] text-center border border-transparent hover:border-primary/20 hover:shadow-premium transition-all duration-300 group reveal',
+                facility.delay,
+              ]}
+            >
+              <div class="w-14 h-14 md:w-16 md:h-16 mx-auto bg-primary/5 rounded-2xl flex items-center justify-center text-primary mb-5 md:mb-6 group-hover:scale-110 transition-transform">
+                <Icon class="w-7 h-7 md:w-8 md:h-8" stroke-width={1.5} />
+              </div>
+              <h3 class="font-serif text-lg md:text-xl text-dark mb-2">{facility.title}</h3>
+              <p class="text-sm text-accent">{facility.desc}</p>
             </div>
-            <h3 class="font-serif text-lg md:text-xl text-dark mb-2">{facility.title}</h3>
-            <p class="text-sm text-accent">{facility.desc}</p>
-          </div>
-        ))
+          );
+        })
       }
     </div>
   </div>

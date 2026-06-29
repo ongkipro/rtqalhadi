@@ -59,6 +59,42 @@
 }
 
 /* ==========================================
+   NAVBAR — underline gold animasi + state aktif (scrollspy)
+   ========================================== */
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 2px;
+  border-radius: 2px;
+  background-color: var(--color-secondary);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s ease;
+}
+.nav-link:hover {
+  color: var(--color-secondary);
+}
+.nav-link:hover::after,
+.nav-link[aria-current="page"]::after {
+  transform: scaleX(1);
+}
+.nav-link[aria-current="page"] {
+  color: var(--color-secondary);
+}
+
+/* Drawer mobile — penanda link aktif */
+.mobile-link[aria-current="page"] {
+  color: var(--color-primary);
+  border-left-color: var(--color-secondary);
+}
+
+/* ==========================================
    HIDE SCROLLBAR (testimonial carousel)
    ========================================== */
 .hide-scrollbar::-webkit-scrollbar {
