@@ -4,7 +4,14 @@
 
 **مَا شَاءَ اللَّهُ لَا قُوَّةَ إِلَّا بِاللَّهِ**
 
-_Semoga website ini menjadi wasilah kebaikan, ilmu yang bermanfaat, dan amal jariyah bagi semua yang terlibat. Aamiin._
+<div align="center">
+  <div style="background-color: #064e3b; padding: 20px 28px; border-radius: 12px; border: 1px solid #d4af37; display: inline-block;">
+    <p style="font-size: 1.3rem; color: #fdfbf7; margin: 0 0 10px;">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+    <p style="font-size: 1.05rem; color: #d4af37; font-weight: bold; margin: 0 0 6px;">🕌 Saya Wakafkan</p>
+    <p style="color: #d1d5db; line-height: 1.8; margin: 0;">Website <b style="color:#fdfbf7">GRATIS</b> untuk<br/>Pesantren · Masjid · MTQ · TPQ · Madrasah · Lembaga Dakwah</p>
+    <p style="color: #d4af37; font-size: 1.1rem; margin: 10px 0 0;">لِلّٰهِ تَعَالٰى</p>
+  </div>
+</div>
 
 ---
 
@@ -117,7 +124,7 @@ vercel --prod --yes   # deploy manual (opsional)
 
 Dirancang & dikembangkan oleh **Ongki** — [![GitHub](https://img.shields.io/badge/GitHub-ongkipro-181717?logo=github)](https://github.com/ongkipro)
 
-> 🤲 **GRATIS untuk pondok pesantren, masjid, TPQ, madrasah & lembaga dakwah** — sebagai bentuk khidmah dan amal jariyah. _Lillāhi ta'ālā._
+> 🕌 **Saya wakafkan website GRATIS** untuk pondok pesantren, masjid, MTQ, TPQ, madrasah & lembaga dakwah. _Lillāhi ta'ālā._
 
 > 💼 **Butuh website premium serupa** untuk pesantren, sekolah, bisnis, atau toko online?
 > Hubungi **[@ongkipro](https://github.com/ongkipro)** — desain modern, cepat, SEO-friendly, siap deploy.
