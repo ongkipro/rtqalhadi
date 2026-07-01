@@ -9,6 +9,11 @@
   </div>
 </div>
 
+<br/>
+<p align="center">
+  🕌 <b>Muslim institutions</b> — need a website? &nbsp;→&nbsp; <a href="https://ongki.pro"><b>ongki.pro</b></a>
+</p>
+
 ---
 
 # Ribath Tahfidh Al-Qur'an Al-Hadi
@@ -118,13 +123,18 @@ vercel --prod --yes   # deploy manual (opsional)
 
 ## 🤝 Developer
 
-Crafted by **[Ongki](https://ongki.pro)**
+<div align="center">
 
-`Shopify` `Web Development` `Meta Ads` `Google Ads` `SEO` `Cloudflare` `Automation`
+**Crafted by [Ongki](https://ongki.pro)**
+
+🛒 `Shopify` · 🌐 `Web Development` · 📢 `Meta Ads` · 🔍 `Google Ads` · 📈 `SEO` · ☁️ `Cloudflare` · ⚡ `Automation`
+
+</div>
 
 ---
 
 ## 📄 License
 
 © 2026 **Ribath Tahfidh Al-Qur'an Al-Hadi**. All rights reserved.  
+Proprietary code — not for redistribution.
 Proprietary code — not for redistribution.
