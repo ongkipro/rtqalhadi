@@ -1,9 +1,5 @@
 <div align="center">
 
-### بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
-
-**مَا شَاءَ اللَّهُ لَا قُوَّةَ إِلَّا بِاللَّهِ**
-
 <div align="center">
   <div style="background-color: #064e3b; padding: 20px 28px; border-radius: 12px; border: 1px solid #d4af37; display: inline-block;">
     <p style="font-size: 1.3rem; color: #fdfbf7; margin: 0 0 10px;">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
@@ -120,18 +116,15 @@ vercel --prod --yes   # deploy manual (opsional)
 
 ---
 
-## 👤 Pengembang
+## 🤝 Developer
 
-Dirancang & dikembangkan oleh **Ongki** — [![GitHub](https://img.shields.io/badge/GitHub-ongkipro-181717?logo=github)](https://github.com/ongkipro)
+Crafted by **[Ongki](https://ongki.pro)**
 
-> 🕌 **Saya wakafkan website GRATIS** untuk pondok pesantren, masjid, MTQ, TPQ, madrasah & lembaga dakwah. _Lillāhi ta'ālā._
-
-> 💼 **Butuh website premium serupa** untuk pesantren, sekolah, bisnis, atau toko online?
-> Hubungi **[@ongkipro](https://github.com/ongkipro)** — desain modern, cepat, SEO-friendly, siap deploy.
+`Shopify` `Web Development` `Meta Ads` `Google Ads` `SEO` `Cloudflare` `Automation`
 
 ---
 
-## 📄 Lisensi & Hak Cipta
+## 📄 License
 
-© 2026 **Ribath Tahfidh Al-Qur'an Al-Hadi**. Hak cipta dilindungi.
-Seluruh konten, foto, nama, dan merek adalah milik pondok. Kode dikembangkan khusus untuk klien — **bukan proyek open-source** dan tidak untuk didistribusikan ulang tanpa izin.
+© 2026 **Ribath Tahfidh Al-Qur'an Al-Hadi**. All rights reserved.  
+Proprietary code — not for redistribution.
